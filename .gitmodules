@@ -1,0 +1,6 @@
+[submodule "i3.configs"]
+	path = i3.configs
+	url = ./i3.configs/
+[submodule "vim.configs"]
+	path = vim.configs
+	url = ./vim.configs/
