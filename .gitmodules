@@ -1,6 +1,8 @@
 [submodule "i3.configs"]
 	path = i3.configs
-	url = ./i3.configs/
+	url = git://github.com/Kaisrlik/i3.git 
+	branch = master
 [submodule "vim.configs"]
 	path = vim.configs
-	url = ./vim.configs/
+	url = git://github.com/Kaisrlik/.vim.git 
+	branch = master
