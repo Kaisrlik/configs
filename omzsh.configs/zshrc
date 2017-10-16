@@ -84,3 +84,29 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias gdiff="git diff --no-index"
+alias apt-get="sudo apt-get "
+
+# Functions
+clip() {
+# Note: printf is magic to remove trailing new lines
+   printf %s "$(cat)" | xclip -selection clipboard
+}
+
+xshot() {
+   import -window "$(xdotool selectwindow)" ~/xshot_$(date +%F_%H%M%S_%N).png
+}
+
+gitbmerge() {
+   (
+   set -e
+   local WT="$(git worktree list | sed -nE "/\[$1\]/{s/([^ ]+) .*/\1/p}")"
+   if [ -n "$WT" ]; then
+      rm -r "$WT"
+      git worktree prune
+   fi
+   git merge --ff-only "$1" && git push && git branch -d "$1" && git push origin :"$1"
+   )
+}
+
+# vim settings
+# /* vim: set tabstop=3 expandtab: */
