@@ -89,7 +89,7 @@ alias apt-get="sudo apt-get "
 # Functions
 clip() {
 # Note: printf is magic to remove trailing new lines
-   printf %s "$(cat)" | xclip -selection clipboard
+   printf %s "$(cat $1)" | xclip -selection clipboard
 }
 
 xshot() {
