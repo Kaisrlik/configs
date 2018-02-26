@@ -85,6 +85,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias gdiff="git diff --no-index"
 alias apt-get="sudo apt-get "
+alias ccscope="find -path '$(pwd)' -prune -o -name '*.[chxsS]' -print > cscope.files; cscope -b -q -k"
 
 # Functions
 clip() {
