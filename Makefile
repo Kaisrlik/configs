@@ -1,9 +1,25 @@
 PACKAGES=vim.configs i3.configs omzsh.configs
 
-.PHONY: install $(PACKAGES)
+.PHONY: $(PACKAGES)
 
-install: $(PACKAGES)
+all:
+	make download
+	sudo make packages
+	make install
+
+download: $(addsuffix _download, $(PACKAGES))
+
+install: $(addsuffix _install, $(PACKAGES))
 	echo "apt-get install git-email"
 
-$(PACKAGES):
+packages: $(addsuffix _packages, $(PACKAGES))
+
+## common recipes
+%_download:
+	$(MAKE) -C $(subst _download,,$@) download
+
+%_packages:
+	$(MAKE) -C $(subst _download,,$@) packages
+
+%_install:
 	$(MAKE) -C $@ install
