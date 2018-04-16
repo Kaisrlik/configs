@@ -111,3 +111,5 @@ gitbmerge() {
 
 # vim settings
 # /* vim: set tabstop=3 expandtab: */
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
