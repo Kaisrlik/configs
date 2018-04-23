@@ -109,7 +109,13 @@ gitbmerge() {
    )
 }
 
+# Send SIGSEGV to given app
+sigkill() {
+    ps | grep $1 | head -n 1 | awk '{print $1}' | xargs -r kill -SIGSEGV
+}
+
+# fzf sourcing
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # vim settings
 # /* vim: set tabstop=3 expandtab: */
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
