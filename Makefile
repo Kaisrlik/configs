@@ -19,7 +19,7 @@ packages: $(addsuffix _packages, $(PACKAGES))
 	$(MAKE) -C $(subst _download,,$@) download
 
 %_packages:
-	$(MAKE) -C $(subst _download,,$@) packages
+	$(MAKE) -C $(subst _packages,,$@) packages
 
 %_install:
-	$(MAKE) -C $@ install
+	$(MAKE) -C $(subst _install,,$@) install
