@@ -3,6 +3,7 @@
 
 # Path to your oh-my-zsh installation.
   export ZSH=/home/xeri/.oh-my-zsh
+  export SCONSFLAGS="-Q -u -j$(nproc)"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -85,6 +86,8 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias gdiff="git diff --no-index"
 alias apt-get="sudo apt-get "
+alias gitcontains="git branch --contains "
+
 alias ccscope="find -path '$(pwd)' -prune -o -name '*.[chxsS]' -print > cscope.files; cscope -b -q -k"
 
 # Functions
