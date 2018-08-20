@@ -8,7 +8,7 @@
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="afowler"
+ZSH_THEME="xeri"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -54,6 +54,9 @@ ZSH_THEME="afowler"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
+# load autocompletition for zsh
+fpath=('/usr/local/share/zsh/functions/Completion/Unix/' $fpath)
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -87,6 +90,7 @@ source $ZSH/oh-my-zsh.sh
 alias gdiff="git diff --no-index"
 alias apt-get="sudo apt-get "
 alias gitcontains="git branch --contains "
+alias gnome-cc="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
 
 alias ccscope="find -path '$(pwd)' -prune -o -name '*.[chxsS]' -print > cscope.files; cscope -b -q -k"
 

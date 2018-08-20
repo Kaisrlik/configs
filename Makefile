@@ -3,6 +3,7 @@ PACKAGES=vim.configs i3.configs omzsh.configs
 .PHONY: $(PACKAGES)
 
 all:
+	git submodule update --init --recursive
 	make download
 	sudo make packages
 	make install
