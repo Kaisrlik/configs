@@ -11,7 +11,7 @@ all:
 download: $(addsuffix _download, $(PACKAGES))
 
 install: $(addsuffix _install, $(PACKAGES))
-	echo "apt-get install git-email"
+	echo "apt-get install git-email xdotool"
 
 packages: $(addsuffix _packages, $(PACKAGES))
 
