@@ -93,8 +93,12 @@ alias gdiff="git diff --no-index"
 alias apt-get="sudo apt-get "
 alias gitcontains="git branch --contains "
 alias gnome-cc="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
-
+alias dd="dd status=progress"
 alias ccscope="find -path '$(pwd)' -prune -o -name '*.[chxsS]' -print > cscope.files; cscope -b -q -k"
+alias mail="vim -c :NotMuch"
+
+# fzf
+alias Ag="ag --nobreak --nonumbers --noheading . | fzf"
 
 # Functions
 clip() {
