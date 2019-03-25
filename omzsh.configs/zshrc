@@ -97,8 +97,12 @@ alias dd="dd status=progress"
 alias ccscope="find -path '$(pwd)' -prune -o -name '*.[chxsS]' -print > cscope.files; cscope -b -q -k"
 alias mail="vim -c :NotMuch"
 
+alias llog="less -MN"
+alias html=chromium
+
 # fzf
-alias Ag="ag --nobreak --nonumbers --noheading . | fzf"
+alias agf="ag --nobreak --nonumbers --noheading . | fzf"
+alias vpn_avast="sudo /usr/sbin/openconnect --verbose --authgroup=secure vpn.avast.com"
 
 # Functions
 clip() {
