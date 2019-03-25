@@ -54,7 +54,7 @@ ZSH_THEME="xeri"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(vi-mode git)
 
 # load autocompletition for zsh
 fpath=('/usr/local/share/zsh/functions/Completion/Unix/' $fpath)
