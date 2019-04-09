@@ -1,4 +1,4 @@
-PACKAGES=vim.configs i3.configs omzsh.configs
+PACKAGES=vim.configs i3.configs omzsh.configs git.configs
 
 .PHONY: $(PACKAGES)
 
