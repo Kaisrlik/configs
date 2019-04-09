@@ -11,4 +11,6 @@
 	line-graphics = no      # Disable graphics characters
 	tab-size = 4            # Number of spaces per tab
 [alias]
-	commit = commit -s
+	ci = commit -s
+	last = log -1 HEAD
+	unstage = reset HEAD --
