@@ -100,6 +100,8 @@ alias mail="vim -c :NotMuch"
 alias llog="less -MN"
 alias html=chromium
 
+alias psc="ps xawf -eo pid,user,cgroup,args"
+
 # fzf
 alias agf="ag --nobreak --nonumbers --noheading . | fzf"
 alias vpn_avast="sudo /usr/sbin/openconnect --verbose --authgroup=secure vpn.avast.com"
