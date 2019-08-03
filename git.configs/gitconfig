@@ -15,5 +15,5 @@
 	last = log -1 HEAD
 	unstage = reset HEAD --
 	merged = branch --merged
-	dmerged = "git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+	dmerged = !git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d
 	graph = log --graph --date=short --summary --shortstat
