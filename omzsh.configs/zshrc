@@ -54,10 +54,13 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(vi-mode git)
+plugins=(git)
 
 # load autocompletition for zsh
 fpath=('/usr/local/share/zsh/functions/Completion/Unix/' $fpath)
+
+# so as not to be disturbed by Ctrl-S ctrl-Q in terminals
+stty -ixon
 
 source $ZSH/oh-my-zsh.sh
 
