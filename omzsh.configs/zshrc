@@ -101,6 +101,7 @@ alias ccscope="find -path '$(pwd)' -prune -o -name '*.[chxsS]' -print > cscope.f
 alias mail="vim -c :NotMuch"
 
 alias llog="less -MN"
+alias estrace="strace -f -ttT -s 200"
 alias html=chromium
 
 alias psc="ps xawf -eo pid,user,cgroup,args"
@@ -108,6 +109,10 @@ alias psc="ps xawf -eo pid,user,cgroup,args"
 # fzf
 alias agf="ag --nobreak --nonumbers --noheading . | fzf"
 alias vpn_avast="sudo /usr/sbin/openconnect --verbose --authgroup=secure vpn.avast.com"
+
+# linux kernel
+alias kernel-getml="git show HEAD | perl scripts/get_maintainer.pl --separator , --nokeywords --nogit --nogit-fallback --norolestats --nol"
+alias kernel-checkspell="scripts/checkpatch.pl --strict --codespell"
 
 # Functions
 clip() {
