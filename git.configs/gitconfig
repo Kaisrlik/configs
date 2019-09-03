@@ -1,3 +1,5 @@
+[am]
+	threeWay = true
 [core]
 	editor = vim
 [user]
@@ -7,6 +9,14 @@
 	verbose = true
 [color]
 	ui = auto
+[format]
+	signoff = true
+[sendemail]
+  smtpserver = smtp.gmail.com
+  smtpserverport = 587
+  smtpencryption = tls
+  smtpuser = ja.kaisrlik@gmail.com
+  from = ja.kaisrlik@gmail.com
 [tig]
 	line-graphics = no      # Disable graphics characters
 	tab-size = 4            # Number of spaces per tab
@@ -17,3 +27,4 @@
 	merged = branch --merged
 	dmerged = !git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d
 	graph = log --graph --date=short --summary --shortstat
+	start = !git init && git add -A && git commit -m "init"
