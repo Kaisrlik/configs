@@ -12,14 +12,15 @@
 [format]
 	signoff = true
 [sendemail]
-  smtpserver = smtp.gmail.com
-  smtpserverport = 587
-  smtpencryption = tls
-  smtpuser = ja.kaisrlik@gmail.com
-  from = ja.kaisrlik@gmail.com
+	smtpserver = smtp.gmail.com
+	smtpserverport = 587
+	smtpencryption = tls
+	smtpuser = ja.kaisrlik@gmail.com
+	from = ja.kaisrlik@gmail.com
 [tig]
-	line-graphics = no      # Disable graphics characters
+	line-graphics = yes     # Disable graphics characters
 	tab-size = 4            # Number of spaces per tab
+	main-view-id = yes      # Show commit hash in main view
 [alias]
 	ci = commit -s
 	last = log -1 HEAD
@@ -28,3 +29,7 @@
 	dmerged = !git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d
 	graph = log --graph --date=short --summary --shortstat
 	start = !git init && git add -A && git commit -m "init"
+[merge]
+	tool = vim
+[status]
+	submoduleSummary = yes
