@@ -29,6 +29,12 @@
 	dmerged = !git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d
 	graph = log --graph --date=short --summary --shortstat
 	start = !git init && git add -A && git commit -m "init"
+	df = diff --word-diff=color
+	find-file = "!f() { \
+			for b in $(git rev-list --all); do \
+				git ls-tree -r --name-only $b | grep --quiet \"$1\" && echo $b; \
+			done; \
+		}; f"
 [merge]
 	tool = vim
 [status]
