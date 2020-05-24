@@ -39,3 +39,5 @@
 	tool = vim
 [status]
 	submoduleSummary = yes
+[pull]
+	rebase = true
