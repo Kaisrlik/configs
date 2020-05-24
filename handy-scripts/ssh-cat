@@ -1,0 +1,59 @@
+#!/bin/bash
+
+VERBOSE=0
+OPTS=""
+
+# TODO: add getopts
+
+OPTS_VERBOSE="-v"
+if [ -z "${OPTS##*$OPTS_VERBOSE*}" ] ;then
+	echo "String '$OPTS' contain substring: '$OPTS_VERBOSE'.";
+	VERBOSE=1
+fi
+
+SRC_SERVER=""
+DEST_SERVER=""
+SRC_FILE="$1"
+DEST_FILE="$2"
+
+if [[ "${SRC_FILE}" =~ ":" ]]; then
+	SRC_SERVER=${SRC_FILE%:*}
+	SRC_FILE=${SRC_FILE#*:}
+	[ ${VERBOSE} -eq 0 ] || echo "debug:src: ${SRC_SERVER} : ${SRC_FILE}"
+fi
+
+if [[ "${DEST_FILE}" =~ ":" ]]; then
+	DEST_SERVER=${DEST_FILE%:*}
+	DEST_FILE=${DEST_FILE#*:}
+	[ ${VERBOSE} -eq 0 ] || echo "debug:dest: ${DEST_SERVER} : ${DEST_FILE}"
+fi
+
+if [[ ! -z "${SRC_SERVER}" && ! -z ${DEST_SERVER} ]]; then
+	echo "You cannot copy between remote servers!"
+	exit 1
+fi
+
+# add prefix ~/ when given path is relative
+if [[ "${SRC_FILE:0:1}" != "/" ]]; then
+	SRC_FILE="~/${SRC_FILE}"
+fi
+if [[ "${DEST_FILE:0:1}" != "/" ]]; then
+	DEST_FILE="~/${DEST_FILE}"
+fi
+
+[ ${VERBOSE} -eq 0 ] || echo "debug:src: ${SRC_SERVER} : ${SRC_FILE}"
+[ ${VERBOSE} -eq 0 ] || echo "debug:dest: ${DEST_SERVER} : ${DEST_FILE}"
+
+if [[ ! -z ${SRC_FILE} ]]; then
+	[ ${VERBOSE} -eq 0 ] || echo cat ${SRC_FILE} \| ssh ${DEST_SERVER} "cat > ${DEST_FILE}"
+	cat "${SRC_FILE}" | ssh ${OPTS} "${DEST_SERVER}" "cat > ${DEST_FILE}"
+else
+	[ ${VERBOSE} -eq 0 ] || echo ssh ${SRC_SERVER} "cat ${SRC_FILE}" \> ${DEST_FILE}
+	ssh ${OPTS} "${SRC_SERVER}" "cat '${SRC_FILE}'" > "${DEST_FILE}"
+fi
+
+# tmp=${a#*_}   # remove prefix ending in "_"
+# b=${tmp%_*}   # remove suffix starting with "_"
+#     if [ -z "${string##*$reqsubstr*}" ] ;then
+#         echo "String '$string' contain substring: '$reqsubstr'.";
+
