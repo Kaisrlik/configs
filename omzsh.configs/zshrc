@@ -144,5 +144,8 @@ sigkill() {
 # fzf sourcing
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# # map escape to capslock
+xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+
 # vim settings
 # /* vim: set tabstop=3 expandtab: */
