@@ -2,6 +2,7 @@
 	threeWay = true
 [core]
 	editor = vim
+	excludesFile = ~/.gitignore
 [user]
 	email = jan.kaisrlik@avast.com
 	name = Jan Kaisrlik
