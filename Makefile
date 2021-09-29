@@ -22,6 +22,7 @@ packages: $(addsuffix _packages, $(PACKAGES))
 	$(MAKE) -C $(subst _download,,$@) download
 
 %_packages:
+	sudo apt-get install lnav
 	$(MAKE) -C $(subst _packages,,$@) packages
 
 %_install:
