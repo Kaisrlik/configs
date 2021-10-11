@@ -1,4 +1,9 @@
-PACKAGES=vim.configs i3.configs omzsh.configs git.configs systemd
+PACKAGES = git.configs \
+	i3.configs \
+	omzsh.configs \
+	systemd \
+	vim.configs \
+	xterm
 
 .PHONY: $(PACKAGES)
 
