@@ -4,7 +4,7 @@ install:
 	ln -sf $(CURDIR)/gitconfig ~/.gitconfig
 	ln -sf $(CURDIR)/gitignore ~/.gitignore
 
-package:
+packages:
 	true
 
 download:

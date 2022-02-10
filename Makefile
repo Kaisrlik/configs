@@ -3,7 +3,7 @@ PACKAGES = git.configs \
 	omzsh.configs \
 	systemd \
 	vim.configs \
-	xterm
+	xterm.configs
 
 .PHONY: $(PACKAGES)
 
@@ -19,6 +19,7 @@ install: $(addsuffix _install, $(PACKAGES))
 	@echo "apt-get install git-email xdotool"
 	@echo "To Install mail utils ..."
 	@echo "apt-get install offlineimap notmuch-vim"
+	@echo "sudo apt-get install lnav tig"
 
 packages: $(addsuffix _packages, $(PACKAGES))
 
@@ -27,7 +28,6 @@ packages: $(addsuffix _packages, $(PACKAGES))
 	$(MAKE) -C $(subst _download,,$@) download
 
 %_packages:
-	sudo apt-get install lnav
 	$(MAKE) -C $(subst _packages,,$@) packages
 
 %_install:

@@ -4,7 +4,7 @@
 	editor = vim
 	excludesFile = ~/.gitignore
 [user]
-	email = jan.kaisrlik@avast.com
+	email = jan.kaisrlik@intel.com
 	name = Jan Kaisrlik
 [commit]
 	verbose = true
