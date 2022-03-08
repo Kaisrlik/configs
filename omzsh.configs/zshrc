@@ -62,6 +62,8 @@ fpath=('/usr/local/share/zsh/functions/Completion/Unix/' $fpath)
 # so as not to be disturbed by Ctrl-S ctrl-Q in terminals
 stty -ixon
 
+DISABLE_UPDATE_PROMPT=true
+DISABLE_AUTO_UPDATE=true
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -94,6 +96,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias gdiff="git diff --no-index"
 alias apt-get="sudo apt-get "
+alias apt="sudo apt "
 alias gitcontains="git branch --contains "
 alias gnome-cc="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
 alias dd="dd status=progress"
@@ -114,6 +117,11 @@ alias vpn_avast="sudo /usr/sbin/openconnect --verbose --authgroup=secure vpn.ava
 alias kernel-getml="git show HEAD | perl scripts/get_maintainer.pl --separator , --nokeywords --nogit --nogit-fallback --norolestats --nol"
 alias kernel-checkspell="scripts/checkpatch.pl --strict --codespell"
 
+# docker
+dr() {
+    docker run --env UID=$(id -u) --env GID=$(id -g) --rm=true -v $(pwd):/workdir -it $@
+}
+
 # Functions
 clip() {
 # Note: printf is magic to remove trailing new lines
@@ -122,6 +130,25 @@ clip() {
 
 xshot() {
    import -window "$(xdotool selectwindow)" ~/xshot_$(date +%F_%H%M%S_%N).png
+}
+
+todolist() {
+    (
+    if [ $# -lt 2 ]; then
+        echo "not enough args"
+        echo "usage: $0 PROJECT_NAME some_strings"
+        return
+    fi
+    local project=$1
+    shift
+    local task="- [ ] $@"
+    local file=${HOME}/TODO/TODO-${project}.org
+    if [ ! -f ${file} ]; then
+        mkdir -p $(dirname ${file})
+        echo "* TODO list ${project}\n" >> ${file}
+    fi
+    sed -i "2s;^;${task}\n;" ~/TODO/TODO-${project}.org
+    )
 }
 
 gitbmerge() {
@@ -141,6 +168,14 @@ sigkill() {
     ps | grep $1 | head -n 1 | awk '{print $1}' | xargs -r kill -SIGSEGV
 }
 
+# avoid duplicate enrtries in hostory
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS
+
 # fzf sourcing
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -149,3 +184,12 @@ setxkbmap -option caps:escape
 
 # vim settings
 # /* vim: set tabstop=3 expandtab: */
+
+# share gpg anget in your system
+# envfile="$HOME/.gnupg/gpg-agent.env"
+# if [[ -e "$envfile" ]] && kill -0 $(grep GPG_AGENT_INFO "$envfile" | cut -d: -f 2) 2>/dev/null; then
+#     eval "$(cat "$envfile")"
+# else
+#     eval "$(gpg-agent --daemon --allow-preset-passphrase --write-env-file "$envfile")"
+# fi
+# export GPG_AGENT_INFO

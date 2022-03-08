@@ -1,0 +1,15 @@
+# /etc/systemd/system/dhclient@.service
+# systemctl daemon-reload
+# systemctl enable/start dhclient@eth0.service
+[Unit]
+Description=dhclient on %I
+Wants=network.target
+Before=network.target
+BindsTo=sys-subsystem-net-devices-%i.device
+After=sys-subsystem-net-devices-%i.device
+
+[Service]
+ExecStart=/sbin/dhclient -4 -v -pf /run/dhclient.%I.pid -lf /var/lib/dhcp/dhclient.%I.leases %I
+
+[Install]
+WantedBy=multi-user.target

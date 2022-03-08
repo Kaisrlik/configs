@@ -3,6 +3,7 @@
 [core]
 	editor = vim
 	excludesFile = ~/.gitignore
+	pager = less -XF
 [user]
 	email = jan.kaisrlik@intel.com
 	name = Jan Kaisrlik

@@ -3,5 +3,7 @@
 .ccls-cache
 .*sw?
 .vimrc
+# commonly used build directories
 _build/
 _b/
+build/
