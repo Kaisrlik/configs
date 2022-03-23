@@ -142,25 +142,13 @@ todolist() {
     local project=$1
     shift
     local task="- [ ] $@"
-    local file=${HOME}/TODO/TODO-${project}.org
+    local file=${HOME}/TODO/${project}.org
     if [ ! -f ${file} ]; then
         mkdir -p $(dirname ${file})
         echo "* TODO list ${project}\n" >> ${file}
     fi
-    sed -i "2s;^;${task}\n;" ~/TODO/TODO-${project}.org
+    sed -i "2s;^;${task}\n;" ${file}
     )
-}
-
-gitbmerge() {
-   (
-   set -e
-   local WT="$(git worktree list | sed -nE "/\[$1\]/{s/([^ ]+) .*/\1/p}")"
-   if [ -n "$WT" ]; then
-      rm -r "$WT"
-      git worktree prune
-   fi
-   git merge --ff-only "$1" && git push && git branch -d "$1" && git push origin :"$1"
-   )
 }
 
 # Send SIGSEGV to given app
