@@ -1,8 +1,11 @@
 [submodule "i3.configs"]
 	path = i3.configs
-	url = git://github.com/Kaisrlik/i3.git 
+	url = https://github.com/Kaisrlik/i3.git
 	branch = master
 [submodule "vim.configs"]
 	path = vim.configs
-	url = git://github.com/Kaisrlik/.vim.git 
+	url = https://github.com/Kaisrlik/.vim.git
 	branch = master
+[submodule "gdb.configs/gdb-dashboard"]
+	path = gdb.configs/gdb-dashboard
+	url = git@github.com:cyrus-and/gdb-dashboard.git
