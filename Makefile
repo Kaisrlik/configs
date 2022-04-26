@@ -3,7 +3,7 @@ PACKAGES = git.configs \
 	omzsh.configs \
 	systemd \
 	vim.configs \
-	xterm.configs
+	foot.configs
 
 .PHONY: $(PACKAGES)
 
