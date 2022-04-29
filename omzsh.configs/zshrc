@@ -11,6 +11,7 @@ setopt HIST_IGNORE_ALL_DUPS
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="xeri"
+export TERM=xterm-256color
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -105,13 +106,12 @@ alias mail="vim -c :NotMuch"
 
 alias llog="less -MN"
 alias estrace="strace -f -ttT -s 200"
-alias html=chromium
+alias html=firefox
 
 alias psc="ps xawf -eo pid,user,cgroup,args"
 
 # fzf
 alias agf="ag --nobreak --nonumbers --noheading . | fzf"
-alias vpn_avast="sudo /usr/sbin/openconnect --verbose --authgroup=secure vpn.avast.com"
 
 # linux kernel
 alias kernel-getml="git show HEAD | perl scripts/get_maintainer.pl --separator , --nokeywords --nogit --nogit-fallback --norolestats --nol"
@@ -156,6 +156,21 @@ sigkill() {
     ps | grep $1 | head -n 1 | awk '{print $1}' | xargs -r kill -SIGSEGV
 }
 
+check_certs_end() {
+    ls $1 2>/dev/null 1>&2
+    if [[ $? -ne 0 ]]; then
+        return 0
+    fi
+    openssl x509 -enddate -checkend 2628000 -noout -in $1 1>/dev/null
+    if [[ $? == 0 ]]; then
+        return 0
+    fi
+    local date=$(date --date="$(openssl x509 -enddate -noout -in $1 | cut -d= -f 2)" \
+        --iso-8601)
+    echo "Expiration date of $1 is less than mounth: $date!"
+    return 1
+}
+
 # avoid duplicate enrtries in hostory
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_DUPS
@@ -181,3 +196,5 @@ setxkbmap -option caps:escape
 #     eval "$(gpg-agent --daemon --allow-preset-passphrase --write-env-file "$envfile")"
 # fi
 # export GPG_AGENT_INFO
+
+check_certs_end ~/.cert/certificate.pem
