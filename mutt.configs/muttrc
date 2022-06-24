@@ -3,7 +3,7 @@ set from = "jan.kaisrlik@intel.com"
 set realname = "Jan Kaisrlik"
 
 # TODO: source "$(dirname $(readlink -f $0))/src.conf"
-source ~/devel/configs/mutt.configs/src.conf"
+source ~/devel/configs/mutt.configs/intel.mutt"
 
 # config while using imap client like offlineimap, isync
 # https://people.kernel.org/mcgrof/replacing-offlineimap-with-mbsync

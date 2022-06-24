@@ -68,8 +68,12 @@ DISABLE_AUTO_UPDATE=true
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+export TERM=xterm-256color
 
 # export MANPATH="/usr/local/man:$MANPATH"
+export PATH="$PATH:${HOME}/devel/configs/handy-scripts/"
+
+systemctl --user import-environment DISPLAY
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -102,6 +106,7 @@ alias gitcontains="git branch --contains "
 alias gnome-cc="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
 alias dd="dd status=progress"
 alias ccscope="find -not -path '*/.ccls-cache/*' -name '*.[chxsS]' -print > cscope.files; cscope -b -q -k"
+alias ctags="ctags --exclude=.ccls-cache/ --exclude=\"_b*/\" --exclude=\"build*/\" "
 alias mail="vim -c :NotMuch"
 
 alias llog="less -MN"
@@ -126,10 +131,6 @@ dr() {
 clip() {
 # Note: printf is magic to remove trailing new lines
    printf %s "$(cat $1)" | xclip -selection clipboard
-}
-
-xshot() {
-   import -window "$(xdotool selectwindow)" ~/xshot_$(date +%F_%H%M%S_%N).png
 }
 
 todolist() {
@@ -183,7 +184,7 @@ setopt HIST_SAVE_NO_DUPS
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # # map escape to capslock
-setxkbmap -option caps:escape
+# setxkbmap -option caps:escape
 
 # vim settings
 # /* vim: set tabstop=3 expandtab: */
