@@ -1,0 +1,101 @@
+# About Me
+set from = "jan.kaisrlik@intel.com"
+set realname = "Jan Kaisrlik"
+
+# TODO: source "$(dirname $(readlink -f $0))/src.conf"
+source ~/devel/configs/mutt.configs/src.conf"
+
+# config while using imap client like offlineimap, isync
+# https://people.kernel.org/mcgrof/replacing-offlineimap-with-mbsync
+# set folder = "~/mail"
+# source ~/.mutt/mailboxes
+# set spoolfile = "+account/INBOX"
+# set record = "+account/Sent\ Items"
+# set postponed = "+account/Drafts"
+
+# Where to put the stuff
+set header_cache = "~/.mutt/cache/headers"
+set message_cachedir="~/.mutt/cache/bodies"
+set certificate_file="~/.mutt/certificates"
+
+# Etc
+set mail_check = 30
+set move = no
+set imap_keepalive = 900
+# set sort = threads
+set sort = reverse-date
+set editor = "vim"
+set date_format="%m/%d %H:%M"
+set index_format="%2C %Z %?X?A& ? %D  %-20.20F  %s (%c)"
+
+set mailcap_path = ~/.mutt/mailcap
+auto_view text/html
+alternative_order text/plain text/html
+macro attach 'V' "<pipe-entry>iconv -c --to-code=UTF8 > /tmp/mail.html<enter><shell-escape>firefox /tmp/mail.html<enter>"
+
+# Sidebar mappings
+set sidebar_visible = yes
+set sidebar_width = 20
+set sidebar_short_path = yes
+set sidebar_next_new_wrap = yes
+set mail_check_stats
+set sidebar_format = '%B%?F? [%F]?%* %?N?%N/? %?S?%S?'
+
+## color scheme
+color normal white default # pager body
+color attachment green black # ..
+color error red default # global
+# color scheme for header:
+color header blue default "^cc: "
+color header yellow default "^date: "
+color header green default "^from "
+color header yellow default "^from: "
+color header white red "^newsgroups: "
+color header red default "^reply-to: "
+color header white blue "^subject: "
+color header red default "^to: "
+color header magenta default "^x-mailer: "
+color header green default "^message-id:"
+color header red default "^message-id: .*pine"
+# color hdrdefault blue black #
+color indicator white blue # index
+color markers red default# index
+color message white blue # index
+# New mail is boldened:
+color index brightyellow default "~N"
+# Tagged mail is highlighted:
+color index brightyellow blue "~T"
+# Coloring quoted text - coloring only the first four levels:
+color quoted cyan default# pager body
+color quoted1 red default# pager body
+color quoted2 cyan default# pager body
+color quoted3 yellow default# pager body
+color signature red default# pager body
+color status white blue # index status bar default: black white
+color tilde blue default# pager body
+color tree red default# index
+color underline yellow default#
+color body blue red "<[Gg]>"
+color body blue red "<[Bb][Gg]>"
+color body brightred default "[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+" # Email addresses
+color body brightblue default "(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+" # URL
+color body green default "\`[^\`]*\`" # Green text between ` and `
+color body brightblue default "^# \.*" # Headings as bold blue
+color body brightcyan default "^## \.*" # Subheadings as bold cyan
+color body brightgreen default "^### \.*" # Subsubheadings as bold green
+color body yellow default "^(\t| )*(-|\\*) \.*" # List items as yellow
+color body brightcyan default "[;:][-o][)/(|]" # emoticons
+color body brightcyan default "[;:][)(|]" # emoticons
+color body brightcyan default "[ ][*][^*]*[*][ ]?" # more emoticon?
+color body brightcyan default "[ ]?[*][^*]*[*][ ]" # more emoticon?
+color body red default "(BAD signature)"
+color body green default "(Good signature)"
+color body brightblack default "^gpg: Good signature .*"
+color body brightyellow default "^gpg: "
+color body brightyellow red "^gpg: BAD signature from.*"
+mono body bold "^gpg: Good signature"
+mono body bold "^gpg: BAD signature from.*"
+color body yellow default "([a-z][a-z0-9+-]*://(((([a-z0-9_.!~*'();:&=+$,-]|%[0-9a-f][0-9a-f])*@)?((([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?|[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)(:[0-9]+)?)|([a-z0-9_.!~*'()$,;:@&=+-]|%[0-9a-f][0-9a-f])+)(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?(#([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?|(www|ftp)\\.(([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?(:[0-9]+)?(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?(#([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?)[^].,:;!)? \t\r\n<>\"]"
+
+# GnuPG bootstrap
+# source "gpg -d ~/.mutt/password.gpg |"
