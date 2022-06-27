@@ -1,0 +1,21 @@
+#####################################################
+# First generic defaults
+# for the isync rename of Master/Slave for Far/Near
+#Create Near
+Create Both
+# Save the synchronization state files in the relevant directory
+SyncState *
+Sync All
+
+MaildirStore intel-local
+## The trailing "/" is important
+Path ~/mail/intel/
+Inbox ~/mail/intel/Inbox
+Subfolders Verbatim
+
+IMAPStore intel-remote
+Account intel
+
+Channel intel
+Far :intel-remote:
+Near :intel-local:

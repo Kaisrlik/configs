@@ -9,3 +9,6 @@
 [submodule "gdb.configs/gdb-dashboard"]
 	path = gdb.configs/gdb-dashboard
 	url = git@github.com:cyrus-and/gdb-dashboard.git
+[submodule "nvim.config"]
+	path = nvim.config
+	url = git@github.com:Kaisrlik/nvim.config.git
