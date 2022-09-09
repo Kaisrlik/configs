@@ -1,6 +1,7 @@
 # git config --global core.excludesFile "$(pwd)/gitignore"
 .ccls
 .ccls-cache
+.ccls-root
 .*sw?
 .vimrc
 # commonly used build directories

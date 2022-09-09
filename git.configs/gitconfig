@@ -41,6 +41,8 @@
 	tool = vim
 [status]
 	submoduleSummary = yes
+[push]
+	default = current
 [pull]
 	rebase = true
 [init]
