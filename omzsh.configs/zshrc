@@ -107,7 +107,7 @@ alias gnome-cc="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
 alias dd="dd status=progress"
 alias ccscope="find -not -path '*/.ccls-cache/*' -name '*.[chxsS]' -print > cscope.files; cscope -b -q -k"
 alias cctags="ctags --exclude=.ccls-cache --exclude=\"_b*\" --exclude=\"build*\" -R"
-alias mail="mutt"
+alias mail="neomutt"
 alias v="nvim"
 
 alias llog="less -MN"
