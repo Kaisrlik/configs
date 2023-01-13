@@ -16,6 +16,16 @@ source ~/devel/configs/mutt.configs/intel.mutt"
 # GnuPG bootstrap
 # source "gpg -d ~/.mutt/password.gpg |"
 
+# create virtual mailboxes
+set virtual_spoolfile=yes
+set nm_default_url = "notmuch://${HOME}/mail"
+virtual-mailboxes "inbox" "notmuch://?query=tag:inbox"
+virtual-mailboxes "archive" "notmuch://?query=tag:archive"
+virtual-mailboxes "sent" "notmuch://?query=tag:sent"
+virtual-mailboxes "newsletters" "notmuch://?query=tag:newsletters"
+macro index c "<change-vfolder>?" "Change to vfolder overview"
+macro index F "<vfolder-from-query>" "Search mailbox"
+
 # Where to put the stuff
 set header_cache = "~/.mutt/cache/headers"
 set message_cachedir="~/.mutt/cache/bodies"
@@ -30,7 +40,10 @@ set sort = reverse-date
 set editor = "vim"
 set date_format="%m/%d %H:%M"
 set index_format="%2C %Z %?X?A& ? %D  %-20.20F  %s (%c)"
-set query_command = "abook --mutt-query '%s'"
+
+# make address book working with mutt
+macro index,pager A "<pipe-message>abook --datafile ~/.mutt/addressbook --add-email<return>" "add the sender address to abook"
+set query_command = "abook --datafile ~/.mutt/addressbook --mutt-query '%s'"
 
 set mailcap_path = ~/.mutt/mailcap
 auto_view text/html
@@ -38,7 +51,7 @@ alternative_order text/plain text/html
 macro attach 'V' "<pipe-entry>iconv -c --to-code=UTF8 > /tmp/mail.html<enter><shell-escape>firefox /tmp/mail.html<enter>"
 
 set mime_type_query_command = "file --mime-type -b %s"
-set smtp_authenticators = 'gssapi:login'
+# set smtp_authenticators = 'gssapi:login'
 set rfc2047_parameters = yes
 set sleep_time = 0 # Pause 0 seconds for informational messages
 set markers = no # Disables the `+` displayed at line wraps
