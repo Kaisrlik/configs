@@ -25,6 +25,7 @@
 	main-view-id = yes      # Show commit hash in main view
 [alias]
 	ci = commit -s
+	forcerm = !f() { filter-branch --index-filter 'rm -f $1' -- --all }; f
 	last = log -1 HEAD
 	unstage = reset HEAD --
 	merged = branch --merged
@@ -38,7 +39,7 @@
 			done; \
 		}; f"
 [merge]
-	tool = vim
+	tool = nvim
 [status]
 	submoduleSummary = yes
 [push]
@@ -47,3 +48,7 @@
 	rebase = true
 [init]
 	defaultBranch = master
+[advice]
+	skippedCherryPicks = false
+[url "ssh://git@github.com"]
+	insteadOf = http://github.com
