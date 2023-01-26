@@ -1,0 +1,8 @@
+[Unit]
+Description=Run mail sync every 10 min
+
+[Timer]
+OnCalendar=*:00/10
+
+[Install]
+WantedBy=mail-sync.service
