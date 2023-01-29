@@ -3,7 +3,8 @@ set from = "jan.kaisrlik@intel.com"
 set realname = "Jan Kaisrlik"
 
 # TODO: source "$(dirname $(readlink -f $0))/src.conf"
-source ~/devel/configs/mutt.configs/intel.mutt"
+# TODO: Add conditional source
+source ~/devel/configs/intel.configs/intel.mutt"
 
 # config while using imap client like offlineimap, isync
 # https://people.kernel.org/mcgrof/replacing-offlineimap-with-mbsync
@@ -19,10 +20,10 @@ source ~/devel/configs/mutt.configs/intel.mutt"
 # create virtual mailboxes
 set virtual_spoolfile=yes
 set nm_default_url = "notmuch://${HOME}/mail"
-virtual-mailboxes "inbox" "notmuch://?query=tag:inbox"
-virtual-mailboxes "archive" "notmuch://?query=tag:archive"
-virtual-mailboxes "sent" "notmuch://?query=tag:sent"
-virtual-mailboxes "newsletters" "notmuch://?query=tag:newsletters"
+virtual-mailboxes "Inbox" "notmuch://?query=tag:new"
+virtual-mailboxes "Archive" "notmuch://?query=tag:archive"
+virtual-mailboxes "Sent" "notmuch://?query=tag:sent"
+virtual-mailboxes "Newsletters" "notmuch://?query=tag:news"
 macro index c "<change-vfolder>?" "Change to vfolder overview"
 macro index F "<vfolder-from-query>" "Search mailbox"
 
@@ -71,7 +72,7 @@ set sidebar_width = 20
 set sidebar_short_path = yes
 set sidebar_next_new_wrap = yes
 set mail_check_stats
-set sidebar_format = '%B%?F? [%F]?%* %?N?%N/? %?S?%S?'
+set sidebar_format = '%D%?F? [%F]?%* %?N?%N/? %?S?%S?'
 
 bind index,pager \Ck sidebar-prev
 bind index,pager \Cj sidebar-next
@@ -118,29 +119,7 @@ bind index,pager,browser d half-down
 bind index,pager,browser u half-up
 bind index,pager S sync-mailbox
 bind index,pager R group-reply
-bind index \031 previous-undeleted	# Mouse wheel
-bind index \005 next-undeleted		# Mouse wheel
-bind pager \031 previous-line		# Mouse wheel
-bind pager \005 next-line		# Mouse wheel
 bind editor <Tab> complete-query
-
-macro index,pager gi "<change-folder>=Inbox<enter>" "go to inbox"
-macro index,pager Mi ";<save-message>=Inbox<enter>" "move mail to inbox"
-macro index,pager Ci ";<copy-message>=Inbox<enter>" "copy mail to inbox"
-macro index,pager gd "<change-folder>=Drafts<enter>" "go to drafts"
-macro index,pager Md ";<save-message>=Drafts<enter>" "move mail to drafts"
-macro index,pager Cd ";<copy-message>=Drafts<enter>" "copy mail to drafts"
-macro index,pager gj "<change-folder>=Junk<enter>" "go to junk"
-macro index,pager Mj ";<save-message>=Junk<enter>" "move mail to junk"
-macro index,pager Cj ";<copy-message>=Junk<enter>" "copy mail to junk"
-macro index,pager gt "<change-folder>=Trash<enter>" "go to trash"
-macro index,pager Mt ";<save-message>=Trash<enter>" "move mail to trash"
-macro index,pager Ct ";<copy-message>=Trash<enter>" "copy mail to trash"
-macro index,pager gs "<change-folder>=Sent<enter>" "go to sent"
-macro index,pager Ms ";<save-message>=Sent<enter>" "move mail to sent"
-macro index,pager Cs ";<copy-message>=Sent<enter>" "copy mail to sent"
-macro index,pager ga "<change-folder>=Archive<enter>" "go to archive"
-macro index Ma "<modify-labels>+archive -unread -inbox<enter>" "Archive message"
 
 ## color scheme
 # Default index colors:
@@ -236,6 +215,7 @@ set hidden_tags = "unread,draft,flagged,passed,replied,attachment,signed,encrypt
 
 # modify (notmuch/imap) tags
 bind index,pager \` modify-labels
+macro index Ma "<modify-labels>+archive -unread -inbox<enter>" "Archive message"
 # modify (notmuch/imap) tag non-interactively.
 bind index,pager t noop
 macro index,pager tt "<modify-labels>!todo<enter>" "Toggle the 'todo' tag"

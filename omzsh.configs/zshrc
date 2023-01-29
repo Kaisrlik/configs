@@ -11,7 +11,6 @@ setopt HIST_IGNORE_ALL_DUPS
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="xeri"
-export TERM=xterm-256color
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -96,9 +95,7 @@ systemctl --user import-environment DISPLAY
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# Aliases
 alias gdiff="git diff --no-index"
 alias apt-get="sudo apt-get "
 alias apt="sudo apt "
@@ -176,7 +173,7 @@ check_certs_end() {
     fi
     local date=$(date --date="$(openssl x509 -enddate -noout -in $1 | cut -d= -f 2)" \
         --iso-8601)
-    echo "Expiration date of $1($2) is less than mounth: $date!"
+    echo "Expiration date of $1($2) in less than mounth: $date!"
     return 1
 }
 
@@ -194,16 +191,8 @@ setopt HIST_SAVE_NO_DUPS
 # # map escape to capslock
 # setxkbmap -option caps:escape
 
+# company specific
+source ~/devel/configs/intel.configs/zshrc
+
 # vim settings
 # /* vim: set tabstop=3 expandtab: */
-
-# share gpg anget in your system
-# envfile="$HOME/.gnupg/gpg-agent.env"
-# if [[ -e "$envfile" ]] && kill -0 $(grep GPG_AGENT_INFO "$envfile" | cut -d: -f 2) 2>/dev/null; then
-#     eval "$(cat "$envfile")"
-# else
-#     eval "$(gpg-agent --daemon --allow-preset-passphrase --write-env-file "$envfile")"
-# fi
-# export GPG_AGENT_INFO
-
-check_certs_end ~/.cert/certificate.pem
