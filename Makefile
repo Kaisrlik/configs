@@ -1,5 +1,6 @@
 PACKAGES = git.configs \
 	i3.configs \
+	nvim.configs \
 	omzsh.configs \
 	systemd \
 	vim.configs \
