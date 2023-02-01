@@ -1,0 +1,15 @@
+#!/bin/bash
+
+unread=$(notmuch search tag:new | wc -l)
+
+if [[ unread -ne 0 ]]; then
+	echo "${unread} 📨"
+	echo
+	if [[ unread -gt 10 ]]; then
+		echo \#FF2222
+	else
+		echo \#FF5555
+	fi
+else
+	echo "No ✉️ "
+fi
