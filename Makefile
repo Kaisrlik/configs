@@ -17,9 +17,7 @@ all:
 download: $(addsuffix _download, $(PACKAGES))
 
 install: $(addsuffix _install, $(PACKAGES))
-	@echo "apt-get install git-email xdotool"
-	@echo "To Install mail utils ..."
-	@echo "apt-get install offlineimap notmuch-vim"
+	@echo "apt-get install git-email xdotool libnotify-bin"
 	@echo "sudo apt-get install lnav tig"
 
 packages: $(addsuffix _packages, $(PACKAGES))

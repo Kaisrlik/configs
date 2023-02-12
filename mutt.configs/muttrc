@@ -20,7 +20,7 @@ source ~/devel/configs/intel.configs/intel.mutt"
 # create virtual mailboxes
 set virtual_spoolfile=yes
 set nm_default_url = "notmuch://${HOME}/mail"
-virtual-mailboxes "Inbox" "notmuch://?query=tag:new"
+virtual-mailboxes "Inbox" "notmuch://?query=tag:inbox"
 virtual-mailboxes "Archive" "notmuch://?query=tag:archive"
 virtual-mailboxes "Sent" "notmuch://?query=tag:sent"
 virtual-mailboxes "Newsletters" "notmuch://?query=tag:news"
