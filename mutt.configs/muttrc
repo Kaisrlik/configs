@@ -224,34 +224,22 @@ macro index,pager tt "<modify-labels>!todo<enter>" "Toggle the 'todo' tag"
 # bind index,pager ??? modify-labels-then-hide
 
 # Replace some tags with icons
-tag-transforms "inbox"   "i" \
-	"unread"  "u" \
-	"replied" "↻" \
-	"sent"    "➥" \
+tag-transforms \
 	"todo"    "T" \
-	"deleted" "DEL" \
 	"invites" "CAL"
 
 # The formats must start with 'G' and the entire sequence is case sensitive.
-tag-formats "inbox"   "GI" \
-	"unread"  "GU" \
-	"replied" "GR" \
-	"sent"    "GS" \
+tag-formats "intel"   "GI" \
 	"todo"    "Gt" \
-	"deleted" "GD" \
 	"invites" "Gi"
 
-# These symbols are added to the index-color feature:
-# an individual message tag, %G, uses tag name
-color index_tag red white "inbox"
-color index_tag yellow default "unread"
-
-# Now instead of using '%g' or '%J' in your $index_format, which lists all tags
-# in a non-deterministic order, you can something like the following which puts
-# a transformed tag name in a specific spot on the index line:
-set index_format="%4C %S %?X?A& ? %D  %-20.20n %?GU?%GU&?%?GR?%GR& ?%?Gt?%Gt& ?  %s :%J: (%c)"
+set index_format="%4C %S %?X?A& ? %D  %-20.20n :%?GI?%GI& ?: %s :%g: (%c)"
 # The %G formatting sequence may display all tags including tags hidden by
 # hidden_tags.
 
 # the transformed message tags, %g
 color index_tags green default
+
+# These symbols are added to the index-color feature:
+# %Gx will repaint those colors
+color index_tag blue default "intel"
