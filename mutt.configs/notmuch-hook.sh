@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo "Initial tagging messages"
+notmuch new
+
+echo "Retagging messages"
 # immediately archive all messages from "me"
 # notmuch tag -new -- tag:new and from:me@example.com
 
@@ -17,6 +21,7 @@ notmuch tag +inbox +unread +notify -new -- tag:new
 NOTIFY_COUNT=$(notmuch count tag:notify)
 
 if [ "$NOTIFY_COUNT" -gt 0 ]; then
+	echo "Sending notification"
 	RESULTS=$(notmuch search --format=json --output=summary --limit=3 \
 		--sort="newest-first" tag:notify | \
 		jq -r '.[] | "<b>\(.authors):</b>\n  \(.subject)\n"')
