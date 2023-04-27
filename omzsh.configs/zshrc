@@ -110,6 +110,7 @@ alias pdfview="evince"
 
 alias llog="less -MN"
 alias estrace="strace -f -ttT -s 200"
+alias mstrace="strace -e brk,mmap,munmap,madvise -s200"
 alias html=firefox
 
 alias psc="ps xawf -eo pid,user,cgroup,args"
