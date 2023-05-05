@@ -11,9 +11,7 @@ echo "Retagging messages"
 # notmuch tag +deleted -- tag:new and from:spam@spam.com
 
 # tag all message from notmuch mailing list
-notmuch tag +news +intel -- tag:new and from:taryn.ray@intel.org
-notmuch tag +intel -- tag:new and to:jan.kaisrlik@intel.com
-notmuch tag +intel -- tag:new and from:jan.kaisrlik@intel.com
+../intel.configs/notmuch-hook-intel.sh 2>/dev/null
 
 # finally, retag all "new" messages "inbox" and "unread"
 notmuch tag +inbox +unread +notify -new -- tag:new
