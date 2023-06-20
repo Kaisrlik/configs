@@ -38,7 +38,7 @@ set move = no
 set imap_keepalive = 900
 # set sort = threads
 set sort = reverse-date
-set editor = "vim"
+set editor = "nvim"
 set date_format="%m/%d %H:%M"
 
 # make address book working with mutt

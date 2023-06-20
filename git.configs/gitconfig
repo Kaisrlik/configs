@@ -1,7 +1,7 @@
 [am]
 	threeWay = true
 [core]
-	editor = vim
+	editor = nvim
 	excludesFile = ~/.gitignore
 	pager = less -XF
 [user]

@@ -4,7 +4,7 @@
 setopt HIST_IGNORE_ALL_DUPS
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/xeri/.oh-my-zsh
+  export ZSH=~/.oh-my-zsh
   export SCONSFLAGS="-Q -u -j$(nproc)"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
@@ -193,7 +193,7 @@ setopt HIST_SAVE_NO_DUPS
 # setxkbmap -option caps:escape
 
 # company specific
-source ~/devel/configs/intel.configs/zshrc
+[[ -f ~/devel/configs/intel.configs/zshrc ]] && source ~/devel/configs/intel.configs/zshrc
 
 # vim settings
 # /* vim: set tabstop=3 expandtab: */
