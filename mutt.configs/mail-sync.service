@@ -4,4 +4,4 @@ Description=Mailbox synchronization service
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/mbsync -Va
-ExecStartPost=/bin/bash -c "/home/xeri/devel/configs/mutt.configs/notmuch-hook.sh"
+ExecStartPost=/bin/bash -c "~/.mutt/notmuch-hook.sh"

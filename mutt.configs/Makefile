@@ -4,6 +4,8 @@ install: install_systemd
 	ln -sf $(CURDIR)/muttrc ~/.muttrc
 	ln -sf $(CURDIR)/mbsyncrc ~/.mbsyncrc
 	ln -sf $(CURDIR)/notmuch-config ~/.notmuch-config
+	ln -sf $(CURDIR)/notmuch-hook.sh ~/.mutt/notmuch-hook.sh
+	ln -sf $(CURDIR)/mailcap ~/.mutt/mailcap
 
 install_systemd:
 	mkdir -p ~/.config/systemd/user
