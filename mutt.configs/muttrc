@@ -101,8 +101,8 @@ bind pager,attach h exit
 bind pager j next-line
 bind pager k previous-line
 bind pager l view-attachments
-bind index D delete-message
-bind index U undelete-message
+macro index,pager d "<delete-message><modify-tags-then-hide>+deleted<enter>" "Delete message"
+macro index,pager u "<undelete-messsage><modify-tags-then-hide>-deleted<enter>" "Undelete message"
 bind index L limit
 bind index h noop
 bind index l display-message
@@ -115,8 +115,6 @@ bind browser gg top-page
 bind browser G bottom-page
 bind pager gg top
 bind pager G bottom
-bind index,pager,browser d half-down
-bind index,pager,browser u half-up
 bind index,pager S sync-mailbox
 bind index,pager R group-reply
 bind editor <Tab> complete-query

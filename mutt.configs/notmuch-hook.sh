@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+CURDIR=$(dirname -- "$( readlink -f -- "$0"; )")
+
 echo "Initial tagging messages"
 notmuch new
 
@@ -11,7 +13,7 @@ echo "Retagging messages"
 # notmuch tag +deleted -- tag:new and from:spam@spam.com
 
 # tag all message from notmuch mailing list
-../intel.configs/notmuch-hook-intel.sh 2>/dev/null
+"${CURDIR}/../intel.configs/notmuch-hook-intel.sh"
 
 # finally, retag all "new" messages "inbox" and "unread"
 notmuch tag +inbox +unread +notify -new -- tag:new
