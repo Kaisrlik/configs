@@ -12,6 +12,13 @@ setopt HIST_IGNORE_ALL_DUPS
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="xeri"
 
+# XDG env variables
+XDG_CURRENT_DESKTOP="sway"
+
+# Enable colors and change prompt:
+autoload -U colors && colors
+autoload -U promptinit && promptinit -u
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -54,17 +61,50 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
 
+DISABLE_UPDATE_PROMPT=true
+DISABLE_AUTO_UPDATE=true
+
+if false; then
+    autoload -U compinit && compinit -u
+#     # set completion colors to be the same as `ls`, after theme has been loaded
+#     [[ -z "$LS_COLORS" ]] || zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+    zstyle ':completion:*' menu select
+    # Auto complete with case insenstivity
+    zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+    zmodload zsh/complist
+    compinit
+    # Include hidden files.
+    _comp_options+=(globdots)
+
+    source ~/.oh-my-zsh/lib/git.zsh
+    # Load git aliases
+    source ~/.oh-my-zsh/plugins/git/git.plugin.zsh
+    source ~/.oh-my-zsh/plugins/gitfast/gitfast.plugin.zsh
+    source ~/devel/configs/omzsh.configs/xeri.zsh-theme
+else
+    plugins=(git gitfast)
+    source $ZSH/oh-my-zsh.sh
+fi
 # load autocompletition for zsh
 fpath=('/usr/local/share/zsh/functions/Completion/Unix/' $fpath)
+
+# fzf
+[[ $- == *i* ]] && source "${HOME}/.vim/bundle/fzf-app/shell/key-bindings.zsh"
+source "${HOME}/.vim/bundle/fzf-app/shell/completion.zsh"
 
 # so as not to be disturbed by Ctrl-S ctrl-Q in terminals
 stty -ixon
 
-DISABLE_UPDATE_PROMPT=true
-DISABLE_AUTO_UPDATE=true
-source $ZSH/oh-my-zsh.sh
+# Start blinking
+export LESS_TERMCAP_mb=$'\e[1;32m'
+export LESS_TERMCAP_md=$'\e[1;32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 # User configuration
 export TERM=xterm-256color
@@ -111,7 +151,7 @@ alias pdfview="evince"
 alias llog="less -MN"
 alias estrace="strace -f -ttT -s 200"
 alias mstrace="strace -e brk,mmap,munmap,madvise -s200"
-alias html=firefox
+alias html="firefox"
 
 alias psc="ps xawf -eo pid,user,cgroup,args"
 
