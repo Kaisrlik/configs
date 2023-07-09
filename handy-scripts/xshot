@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 xshot() {
    slurp | grim -g - ~/xshot_$(date +%F_%H%M%S_%N).png
 }
