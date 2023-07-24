@@ -101,8 +101,8 @@ bind pager,attach h exit
 bind pager j next-line
 bind pager k previous-line
 bind pager l view-attachments
-macro index,pager d "<delete-message><modify-tags-then-hide>+deleted<enter>" "Delete message"
-macro index,pager u "<undelete-messsage><modify-tags-then-hide>-deleted<enter>" "Undelete message"
+macro index,pager d "<modify-tags-then-hide>+deleted<enter><previous-line><delete-message><enter>" "Delete message"
+macro index,pager u "<modify-tags-then-hide>-deleted<enter><previous-entry><undelete-message><enter>" "Undelete message"
 bind index L limit
 bind index h noop
 bind index l display-message
