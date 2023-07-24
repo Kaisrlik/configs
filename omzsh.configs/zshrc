@@ -67,6 +67,7 @@ DISABLE_AUTO_UPDATE=true
 
 if false; then
     autoload -U compinit && compinit -u
+
 #     # set completion colors to be the same as `ls`, after theme has been loaded
 #     [[ -z "$LS_COLORS" ]] || zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
     zstyle ':completion:*' menu select
@@ -74,7 +75,6 @@ if false; then
     zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
     zmodload zsh/complist
-    compinit
     # Include hidden files.
     _comp_options+=(globdots)
 
