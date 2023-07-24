@@ -232,6 +232,9 @@ setopt HIST_SAVE_NO_DUPS
 # # map escape to capslock
 # setxkbmap -option caps:escape
 
+# nix specific
+eval "$(direnv hook zsh)"
+
 # company specific
 [[ -f ~/devel/configs/intel.configs/zshrc ]] && source ~/devel/configs/intel.configs/zshrc
 
