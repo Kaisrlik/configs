@@ -28,4 +28,5 @@ if [ "$NOTIFY_COUNT" -gt 0 ]; then
 	notify-send --urgency=low -t 60000 "$NOTIFY_COUNT New Emails:" "$RESULTS"
 
 	notmuch tag -notify -- tag:notify
+	pkill -RTMIN+3 i3blocks
 fi
