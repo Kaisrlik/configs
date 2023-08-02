@@ -36,8 +36,8 @@ set certificate_file="~/.mutt/certificates"
 set mail_check = 30
 set move = no
 set imap_keepalive = 900
-# set sort = threads
-set sort = reverse-date
+set sort = threads
+set sort_aux = reverse-date
 set editor = "nvim"
 set date_format="%m/%d %H:%M"
 
@@ -46,9 +46,10 @@ macro index,pager A "<pipe-message>abook --datafile ~/.mutt/addressbook --add-em
 set query_command = "abook --datafile ~/.mutt/addressbook --mutt-query '%s'"
 
 set mailcap_path = ~/.mutt/mailcap
+
+# Set parsing/view of plain/html mails
 auto_view text/html
 alternative_order text/plain text/html
-macro attach 'V' "<pipe-entry>iconv -c --to-code=UTF8 > /tmp/mail.html<enter><shell-escape>firefox /tmp/mail.html<enter>"
 
 set mime_type_query_command = "file --mime-type -b %s"
 # set smtp_authenticators = 'gssapi:login'
@@ -181,15 +182,15 @@ color body brightcyan default "[ ][*][^*]*[*][ ]?" # more emoticon?
 color body brightcyan default "[ ]?[*][^*]*[*][ ]" # more emoticon?
 
 # color scheme for header:
-color header blue default ".*"
-color header brightmagenta default "^From"
-color header brightcyan default "^Subject"
-color header brightwhite default "^(CC|BCC)"
+color header white default ".*"
+color header green default "^From"
+color header white default "^Subject"
+color header green default "^(CC|BCC)"
 color header yellow default "^date: "
 color header white red "^newsgroups: "
 color header red default "^reply-to: "
 color header white default "^subject: "
-color header blue default "^to: "
+color header green default "^to: "
 color header magenta default "^x-mailer: "
 color header green default "^message-id:"
 color header red default "^message-id: .*pine"

@@ -10,3 +10,6 @@ _b/
 build/
 # nix
 .direnv
+# ccls
+compile_commands.json
+tags
