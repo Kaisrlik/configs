@@ -232,7 +232,8 @@ tag-formats "intel"   "GI" \
 	"todo"    "Gt" \
 	"invites" "Gi"
 
-set index_format="%4C %S %?X?A& ? %D  %-20.20n :%?GI?%GI& ?: %s :%g: (%c)"
+# ut8 paperclip could be replaced with "A"
+set index_format="%4C %S %?X?📎&  ? %D  %-20.20n :%?GI?%GI& ?: %s :%g: (%c)"
 # The %G formatting sequence may display all tags including tags hidden by
 # hidden_tags.
 

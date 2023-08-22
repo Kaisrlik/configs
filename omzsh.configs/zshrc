@@ -136,6 +136,7 @@ systemctl --user import-environment DISPLAY
 # For a full list of active aliases, run `alias`.
 #
 # Aliases
+alias vim="nvim"
 alias gdiff="git diff --no-index"
 alias apt-get="sudo apt-get "
 alias apt="sudo apt "
