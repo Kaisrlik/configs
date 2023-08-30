@@ -52,5 +52,6 @@
 	skippedCherryPicks = false
 [url "ssh://git@github.com"]
 	insteadOf = http://github.com
+	insteadOf = https://github.com
 [diff]
 	algorithm = patience

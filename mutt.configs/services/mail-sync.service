@@ -1,0 +1,10 @@
+[Unit]
+Description=Mailbox synchronization service
+
+[Service]
+Type=oneshot
+#Environment=PATH="/run/current-system/sw/bin"
+
+ExecStartPre=/run/current-system/sw/bin/echo $PATH
+ExecStart=/run/current-system/sw/bin/mbsync -Va
+ExecStartPost=/run/current-system/sw/bin/bash -c "~/.mutt/notmuch-hook.sh"

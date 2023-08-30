@@ -10,8 +10,8 @@ install: install_systemd
 
 install_systemd:
 	mkdir -p ~/.config/systemd/user
-	cp $(CURDIR)/mail-sync.service ~/.config/systemd/user/mail-sync.service
-	cp $(CURDIR)/mail-sync.timer ~/.config/systemd/user/mail-sync.timer
+	cp $(CURDIR)/services/mail-sync.service ~/.config/systemd/user/mail-sync.service
+	cp $(CURDIR)/services/mail-sync.timer ~/.config/systemd/user/mail-sync.timer
 	systemctl --user enable mail-sync.timer
 
 download:
