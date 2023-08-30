@@ -2,7 +2,7 @@ CURDIR = $(shell pwd)
 
 install: install_systemd
 	ln -sf $(CURDIR)/muttrc ~/.muttrc
-	ln -sf $(CURDIR)/configs ~/.mutt/configs
+	ln -sfT $(CURDIR)/configs ~/.mutt/configs
 	ln -sf $(CURDIR)/mbsyncrc ~/.mbsyncrc
 	ln -sf $(CURDIR)/notmuch-config ~/.notmuch-config
 	ln -sf $(CURDIR)/notmuch-hook.sh ~/.mutt/notmuch-hook.sh
