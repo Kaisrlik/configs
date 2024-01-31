@@ -65,11 +65,34 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 DISABLE_UPDATE_PROMPT=true
 DISABLE_AUTO_UPDATE=true
 
-if false; then
++vi-__git_dirty() {
+    STATUS=$(git status --untracked-files=no --porcelain --ignore-submodules | tail -n 1)
+    if [[ -n $STATUS ]]; then
+        hook_com[unstaged]+='*'
+    fi
+}
+
+if true; then
     autoload -U compinit && compinit -u
 
-#     # set completion colors to be the same as `ls`, after theme has been loaded
-#     [[ -z "$LS_COLORS" ]] || zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+    # https://zsh.sourceforge.io/Doc/Release/User-Contributions.html#Version-Control-Information
+    autoload -Uz vcs_info
+    precmd_vcs_info() { vcs_info }
+    precmd_functions+=( precmd_vcs_info )
+    setopt prompt_subst
+    zstyle ':vcs_info:git:*' formats '<%b%c%u> '
+    zstyle ':vcs_info:*' enable git svn
+    zstyle ':vcs_info:git:*' actionformats ' <%b|%a%u%c> '
+    zstyle ':vcs_info:git*+set-message:*' hooks __git_dirty
+
+    # set format and colors of PS1/RPS1
+    if [ $UID -eq 0 ]; then CARETCOLOR="red"; else CARETCOLOR="blue"; fi
+    local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
+    PROMPT='%n@%m %F{blue}::%f %F{green}%3~%f %F{yellow}${vcs_info_msg_0_}%f%F{${CARETCOLOR}}»%f '
+    RPS1="${return_code}"
+
+    #     # set completion colors to be the same as `ls`, after theme has been loaded
+    [[ -z "$LS_COLORS" ]] || zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
     zstyle ':completion:*' menu select
     # Auto complete with case insenstivity
     zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
@@ -82,7 +105,10 @@ if false; then
     # Load git aliases
     source ~/.oh-my-zsh/plugins/git/git.plugin.zsh
     source ~/.oh-my-zsh/plugins/gitfast/gitfast.plugin.zsh
-    source ~/devel/configs/omzsh.configs/xeri.zsh-theme
+
+    # key-bindings
+    bindkey "\e[1;5C" forward-word
+    bindkey "\e[1;5D" backward-word
 else
     plugins=(git)
     source $ZSH/oh-my-zsh.sh
@@ -147,7 +173,7 @@ alias ccscope="find -not -path '*/.ccls-cache/*' -name '*.[chxsS]' -print > csco
 alias cctags="ctags --exclude=.ccls-cache --exclude=\"_b*\" --exclude=\"build*\" -R"
 alias mail="neomutt"
 alias v="nvim"
-alias pdfview="evince"
+alias pdf="evince 2>/dev/null"
 
 alias llog="less -MN"
 alias estrace="strace -f -ttT -s 200"
