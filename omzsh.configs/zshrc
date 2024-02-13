@@ -109,6 +109,7 @@ if true; then
     # key-bindings
     bindkey "\e[1;5C" forward-word
     bindkey "\e[1;5D" backward-word
+    bindkey '^[.' insert-last-word
 else
     plugins=(git)
     source $ZSH/oh-my-zsh.sh
