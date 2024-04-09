@@ -8,7 +8,7 @@
 	# Crete commit grapth on fetch
 	writeCommitGraph = true
 [user]
-	email = jan.kaisrlik@intel.com
+	email = ja.kaisrlik@gmail.com
 	name = Jan Kaisrlik
 [commit]
 	verbose = true
@@ -65,5 +65,5 @@
 	insteadOf = https://github.com
 [diff]
 	algorithm = patience
-# [includeIf "gitdir:~/devel/intel"]
-# 	path = ~/devel/intel/.gitconfig
+[includeIf "gitdir:~/devel/intel"]
+	path = ~/devel/intel/.gitconfig
