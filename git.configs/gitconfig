@@ -23,7 +23,7 @@
 	smtpuser = ja.kaisrlik@gmail.com
 	from = ja.kaisrlik@gmail.com
 [tig]
-	line-graphics = yes     # Disable graphics characters
+	line-graphics = ascii   # graphics characters
 	tab-size = 4            # Number of spaces per tab
 	main-view-id = yes      # Show commit hash in main view
 [alias]
@@ -31,6 +31,7 @@
 	ci = commit -s
 	forcerm = !f() { filter-branch --index-filter 'rm -f $1' -- --all }; f
 	last = log -1 HEAD
+	local-only = !git branch --format '%(authordate:iso8601)   %(refname:short).%(upstream)' | awk -F. '{if (!$2) print $1}' | sort -r
 	unstage = reset HEAD --
 	merged = branch --merged
 	# blame, ignore movement, commits creating file, any commits
