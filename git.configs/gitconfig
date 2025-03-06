@@ -14,6 +14,10 @@
 	verbose = true
 [color]
 	ui = auto
+[checkout]
+	defaultRemote=origin
+[branch]
+	sort = -committerdate
 [format]
 	signoff = true
 [sendemail]
@@ -23,14 +27,17 @@
 	smtpuser = ja.kaisrlik@gmail.com
 	from = ja.kaisrlik@gmail.com
 [tig]
-	line-graphics = ascii   # graphics characters
-	tab-size = 4            # Number of spaces per tab
-	main-view-id = yes      # Show commit hash in main view
+	# graphics characters
+	line-graphics = ascii
+	# Number of spaces per tab
+	tab-size = 4
+	# Show commit hash in main view
+	main-view-id = yes
 [alias]
-	clonemaster = clone --filter-blob:none --filter=tree:0
+	clonefast = clone --filter-blob:none --filter=tree:0
 	ci = commit -s
-	forcerm = !f() { filter-branch --index-filter 'rm -f $1' -- --all }; f
-	last = log -1 HEAD
+	rmall = !f() { filter-branch --index-filter 'rm -f $1' -- --all }; f
+	last = log -1
 	local-only = !git branch --format '%(authordate:iso8601)   %(refname:short).%(upstream)' | awk -F. '{if (!$2) print $1}' | sort -r
 	unstage = reset HEAD --
 	merged = branch --merged
@@ -62,10 +69,11 @@
 	defaultBranch = master
 [advice]
 	skippedCherryPicks = false
+	pushFetchFirst = true
 [url "ssh://git@github.com"]
 	insteadOf = http://github.com
 	insteadOf = https://github.com
 [diff]
 	algorithm = patience
-[includeIf "gitdir:~/devel/intel"]
+[includeIf "gitdir:~/devel/intel/"]
 	path = ~/devel/intel/.gitconfig

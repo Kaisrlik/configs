@@ -6,6 +6,6 @@ text/calendar; /home/jkaisrli/devel/configs/handy-scripts/icalendar.sh %s; copio
 image/*; firefox %s ;
 video/*; setsid mpv --quiet %s &; copiousoutput
 audio/*; mpv %s ;
-application/pdf; evince %s ;
+application/pdf; zathura --fork %s ;
 application/pgp-encrypted; gpg -d '%s'; copiousoutput;
 application/pgp-keys; gpg --import '%s'; copiousoutput;

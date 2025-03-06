@@ -174,7 +174,7 @@ alias ccscope="find -not -path '*/.ccls-cache/*' -name '*.[chxsS]' -print > csco
 alias cctags="ctags --exclude=.ccls-cache --exclude=\"_b*\" --exclude=\"build*\" -R"
 alias mail="neomutt"
 alias v="nvim"
-alias pdf="evince 2>/dev/null"
+alias pdf="zathura --fork"
 
 alias llog="less -MN"
 alias estrace="strace -f -ttT -s 200"
@@ -192,7 +192,7 @@ alias kernel-checkspell="scripts/checkpatch.pl --strict --codespell"
 
 # docker
 dr() {
-    docker run --env UID=$(id -u) --env GID=$(id -g) --rm=true -v $(pwd):/workdir -it $@
+    docker run --user $(id -u):$(id -g) --rm=true -v $(pwd):/workdir -it $@
 }
 
 # Functions

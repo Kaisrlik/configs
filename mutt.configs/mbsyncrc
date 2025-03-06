@@ -7,6 +7,14 @@ Create Both
 SyncState *
 Sync All
 
+IMAPAccount intel
+SSLType None
+Pass a
+AuthMechs LOGIN
+Host 127.0.0.1
+Port 1993
+User jan.kaisrlik@intel.com
+
 MaildirStore intel-local
 ## The trailing "/" is important
 Path ~/mail/intel/
