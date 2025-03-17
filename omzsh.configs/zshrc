@@ -163,35 +163,34 @@ systemctl --user import-environment DISPLAY
 # For a full list of active aliases, run `alias`.
 #
 # Aliases
-alias vim="nvim"
-alias gdiff="git diff --no-index"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias agf="ag --nobreak --nonumbers --noheading . | fzf"
 alias apt-get="sudo apt-get "
 alias apt="sudo apt "
-alias gitcontains="git branch --contains "
-alias gnome-cc="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
-alias dd="dd status=progress"
 alias ccscope="find -not -path '*/.ccls-cache/*' -name '*.[chxsS]' -print > cscope.files; cscope -b -q -k"
 alias cctags="ctags --exclude=.ccls-cache --exclude=\"_b*\" --exclude=\"build*\" -R"
-alias mail="neomutt"
-alias v="nvim"
-alias pdf="zathura --fork"
-
-alias llog="less -MN"
-alias estrace="strace -f -ttT -s 200"
-alias mstrace="strace -e brk,mmap,munmap,madvise -s200"
+alias dd="dd status=progress"
+alias gdiff="git diff --no-index"
+alias gitcontains="git branch --contains "
+alias gnome-cc="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
 alias html="firefox"
-
+alias llog="less -MN"
+alias mail="neomutt"
+alias pdf="zathura --fork"
 alias psc="ps xawf -eo pid,user,cgroup,args"
+alias strace-ext="strace -f -ttT -s 200"
+alias strace-memory="strace -e brk,mmap,munmap,madvise -s200"
+alias v="nvim"
+alias vim="nvim"
 
-# fzf
-alias agf="ag --nobreak --nonumbers --noheading . | fzf"
-
-# linux kernel
+## linux kernel
 alias kernel-getml="git show HEAD | perl scripts/get_maintainer.pl --separator , --nokeywords --nogit --nogit-fallback --norolestats --nol"
 alias kernel-checkspell="scripts/checkpatch.pl --strict --codespell"
 
 # docker
-dr() {
+docker-run() {
     docker run --user $(id -u):$(id -g) --rm=true -v $(pwd):/workdir -it $@
 }
 
