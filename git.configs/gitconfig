@@ -33,6 +33,8 @@
 	tab-size = 4
 	# Show commit hash in main view
 	main-view-id = yes
+[tig "bind"]
+	main = r ?git branch -D %(branch)
 [alias]
 	clonefast = clone --filter-blob:none --filter=tree:0
 	ci = commit -s

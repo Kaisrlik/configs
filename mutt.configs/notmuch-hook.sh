@@ -2,6 +2,18 @@
 
 CURDIR=$(dirname -- "$( readlink -f -- "$0"; )")
 
+echo "Tag messages for deletion"
+# Mark messages for delete
+notmuch tag +deleted date:..30days tag:git
+
+# delete old messages locally
+to_delete=$(notmuch search --output=files tag:deleted)
+if [[ -n "$to_delete" ]]; then
+	echo $to_delete | xargs rm
+fi
+# Tagging of emails may work as well
+# for x in $(notmuch search --output=files tag:deleted) ; do mv $x ${x}T ; done
+
 echo "Initial tagging messages"
 notmuch new
 
