@@ -40,7 +40,13 @@
 	ci = commit -s
 	rmall = !f() { filter-branch --index-filter 'rm -f $1' -- --all }; f
 	last = log -1
-	local-only = !git branch --format '%(authordate:iso8601)   %(refname:short).%(upstream)' | awk -F. '{if (!$2) print $1}' | sort -r
+	no-upstream = !git branch --format '%(authordate:iso8601)   %(refname:short).%(upstream)' | awk -F. '{if (!$2) print $1}' | sort -r
+	local-only = "!f() { \
+		git for-each-ref --format='%(refname)' refs/remotes refs/heads \
+			| sed -e 's|refs/remotes/[^/]*/|r |g' -e 's|refs/heads/|l |g' \
+			| grep -v '^HEAD$' | sort -k2 | uniq -f1 -u | grep -v '^r' | awk '{print $2}'; \
+		}; f"
+
 	unstage = reset HEAD --
 	merged = branch --merged
 	# blame, ignore movement, commits creating file, any commits
