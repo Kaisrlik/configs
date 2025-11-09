@@ -1,7 +1,60 @@
-[submodule "vim.configs"]
-	path = vim.configs
-	url = https://github.com/Kaisrlik/.vim.git
-	branch = master
 [submodule "gdb.configs/gdb-dashboard"]
 	path = gdb.configs/gdb-dashboard
 	url = git@github.com:cyrus-and/gdb-dashboard.git
+[submodule "vim.configs/bundle/supertab"]
+	path = vim.configs/bundle/supertab
+	url = https://github.com/ervandew/supertab.git
+[submodule "vim.configs/bundle/nerdtree"]
+	path = vim.configs/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "vim.configs/bundle/vim-sensible"]
+   path = vim.configs/bundle/vim-sensible
+   url = https://github.com/tpope/vim-sensible.git
+[submodule "vim.configs/bundle/vim-airline"]
+   path = vim.configs/bundle/vim-airline
+   url = https://github.com/bling/vim-airline.git
+[submodule "vim.configs/fonts/powerline"]
+	path = vim.configs/fonts/powerline
+	url = https://github.com/powerline/fonts.git
+[submodule "vim.configs/bundle/powerline"]
+	path = vim.configs/bundle/powerline
+	url = https://github.com/powerline/powerline.git
+[submodule "vim.configs/bundle/vim-fugitive"]
+   path = vim.configs/bundle/vim-fugitive
+   url = https://github.com/tpope/vim-fugitive.git
+[submodule "vim.configs/bundle/calendar"]
+	path = vim.configs/bundle/calendar
+	url = https://github.com/itchyny/calendar.vim.git
+[submodule "vim.configs/bundle/searchcomplete"]
+	path = vim.configs/bundle/searchcomplete
+	url = https://github.com/vim-scripts/SearchComplete
+[submodule "vim.configs/bundle/fzf.vim"]
+	path = vim.configs/bundle/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git
+[submodule "vim.configs/bundle/fzf-app"]
+	path = vim.configs/bundle/fzf-app
+	url = https://github.com/junegunn/fzf.git
+[submodule "vim.configs/bundle/vim-snippets"]
+	path = vim.configs/bundle/vim-snippets
+	url = https://github.com/honza/vim-snippets.git
+[submodule "vim.configs/bundle/UltiSnips"]
+	path = vim.configs/bundle/UltiSnips
+	url = https://github.com/SirVer/ultisnips.git
+[submodule "vim.configs/bundle/vim-startify"]
+	path = vim.configs/bundle/vim-startify
+	url = https://github.com/mhinz/vim-startify.git
+[submodule "vim.configs/bundle/targets"]
+	path = vim.configs/bundle/targets
+	url = https://github.com/wellle/targets.vim.git
+[submodule "vim.configs/bundle/orgmode"]
+	path = vim.configs/bundle/orgmode
+	url = https://github.com/jceb/vim-orgmode.git
+[submodule "vim.configs/bundle/speeddating"]
+	path = vim.configs/bundle/speeddating
+	url = https://github.com/tpope/vim-speeddating.git
+[submodule "vim.configs/bundle/riv.vim"]
+	path = vim.configs/bundle/riv.vim
+	url = git@github.com:gu-fan/riv.vim.git
+[submodule "vim.configs/bundle/presenting.vim"]
+	path = vim.configs/bundle/presenting.vim
+	url = https://github.com/sotte/presenting.vim

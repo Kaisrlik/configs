@@ -1,0 +1,87 @@
+snippet hdr "header"
+/*
+ * =====================================================================
+ *        Version:  1.0
+ *        Created:  `!v strftime("%x")` `!v strftime("%X")`
+ *         Author:  `!v g:snips_author`
+ *        Company:  `!v g:snips_company`
+ * =====================================================================
+ */
+endsnippet
+
+#struct ${1: `!p snip.rv = (snip.basename or "name") + "_t"`}{
+snippet st "struct"
+struct ${1} {
+	${0: /* data */}
+};
+endsnippet
+
+snippet inc "#include <> (inc)" !
+#include <${1:stdio}.h>
+endsnippet
+
+snippet Inc "#include local header (Inc)" !
+#include "${1:`!p snip.rv = snip.basename + '.h'`}"
+endsnippet
+
+snippet ifndef "ifndef"
+#ifndef $1
+#define ${1} ${2":val}
+#endif
+endsnippet
+
+
+snippet mainv "main(void)" !
+int main(void)
+{
+	${0:}
+	return 0;
+}
+endsnippet
+
+snippet main "main() (main)" !
+int main(int argc, char *argv[])
+{
+	${0:}
+	return 0;
+}
+endsnippet
+
+snippet Once "Simple includeude header guard"
+#ifndef  ${1:`!p snip.rv = '__' + (snip.basename).upper() + '_H__'`}
+#define  $1
+
+${0:}
+
+#endif   /* ----- #ifndef $1  ----- */
+endsnippet
+
+snippet if "if .. (if)" !
+if (${1:}) {
+	${0:}
+}
+endsnippet
+
+snippet ife "if .. else"
+if (${1:}) {
+	${0:}
+}
+else {
+}
+endsnippet
+
+snippet elif "else if"
+else if (${1:}) {
+	${0:}
+}
+endsnippet
+
+snippet prk
+printk("@@@:: %s:%s:%d:\n",__FILE__, __func__,__LINE__);${1}
+endsnippet
+
+snippet prf
+printf("@@@:: %s:%s:%d:\n",__FILE__, __func__,__LINE__);${1}
+endsnippet
+
+# vim:ft=snippetippets:

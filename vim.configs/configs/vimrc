@@ -1,0 +1,23 @@
+"bufferline"
+   let g:bufferline_modified = '*'
+
+command! StripWhitespace execute "call StripWhitespace()"
+
+" Strip trailing whitespace
+function! StripWhitespace()
+	let save_cursor = getpos(".")
+	let old_query = getreg('/')
+	:%s/\s\+$//e
+	call setpos('.', save_cursor)
+	call setreg('/', old_query)
+endfunction
+
+" grep
+set grepformat=%f:%l:%c:%m,%f:%l:%m
+
+" make supertab works with omnifunc
+let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+let g:SuperTabDefaultCompletionType = "context"
+
+" fence conde section in markdown
+let g:markdown_fenced_languages = ['sh', 'python', 'cpp', 'c', 'vim', 'conf', 'sshconfig']
