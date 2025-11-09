@@ -1,0 +1,122 @@
+#!/usr/bin/env bash
+
+# mpris api : https://specifications.freedesktop.org/mpris-spec/2.2/Player_Interface.html
+
+# not implemented by spotify app
+_position() {
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify \
+		/org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get \
+		string:'org.mpris.MediaPlayer2.Player' string:'Position'
+}
+
+_playback_status() {
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify \
+		/org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get \
+		string:'org.mpris.MediaPlayer2.Player' string:'PlaybackStatus'
+}
+
+get_playback_status() {
+	STATUS=$(_playback_status | tail -n1 | awk -F\" {'print $2'})
+	if [[ "${STATUS}" == "Playing" ]]; then
+		echo "▮▮"
+		return
+	fi
+	if [[ "${STATUS}" == "Paused" ]]; then
+		echo "▶"
+		return
+	fi
+	echo "■"
+}
+
+_play() {
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify \
+		/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Play \
+		> /dev/null
+	get_playback_status
+}
+
+_pause() {
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify \
+		/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Pause \
+		> /dev/null
+	get_playback_status
+}
+
+_playpause() {
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify \
+		/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause \
+		> /dev/null
+	sleep 0.1
+	get_playback_status
+}
+
+_previous() {
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify \
+		/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous \
+		> /dev/null
+	echo " "
+}
+
+_next() {
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify \
+		/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next \
+		> /dev/null
+	echo " "
+}
+
+_get_status() {
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify \
+		/org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get \
+		string:'org.mpris.MediaPlayer2.Player' string:'Metadata'
+}
+
+_get_artist() {
+	_get_status | grep artist -A2 | tail -n1 | awk -F\" {'print $2'} | xargs echo -n ""
+}
+
+_get_title() {
+	_get_status | grep title -A1 | tail -n1 | awk -F\" {'print $2'} | xargs echo " :"
+}
+
+usage() {
+    echo "usage: $0 [-vhatnprcs]"
+    echo "  -v,--verbose      verbose output"
+    echo "  -h,--help         display help"
+    echo "  -a,--artist       display current artist"
+    echo "  -t,--title        display current song title"
+    echo "  -n,--next         next song"
+    echo "  -p,--previous     previous song"
+    echo "  -r,--run          play a song"
+    echo "  -c,--toggle       play/pause a song"
+    echo "  -s,--stop         pause a song"
+    echo "  -g,--get-playback get playback status"
+    exit 1
+}
+
+TEMP=`getopt -o vhatnprcsg \
+	--long verbose,help,artist,title,next,previous,run,toggle,stop,get-playback-status \
+	-n "$0" -- "$@"`
+
+eval set -- "$TEMP"
+
+VERBOSE=false
+while true; do
+  case "$1" in
+    -v | --verbose ) VERBOSE=true; shift ;;
+    -h | --help ) usage; exit 1;;
+    -a | --artist ) _get_artist; shift ;;
+    -t | --title ) _get_title; shift ;;
+    -n | --next ) _next; shift ;;
+    -p | --previous ) _previous; shift ;;
+    -r | --run ) _play; shift ;;
+    -c | --toggle ) _playpause; shift ;;
+    -s | --stop ) _pause; shift ;;
+    -g | --get-playback-status ) get_playback_status; shift ;;
+    -- ) shift; break ;;
+    * ) break ;;
+  esac
+done
+
+${VERBOSE} && set -x
+
+exit 0

@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+usage() {
+	echo "Usage: $0 [arguments]" >&2
+	echo "" >&2
+	echo "arguments:" >&2
+	echo "    -h,--help     display this help and exit" >&2
+	echo "    -g            get keyboard layout" >&2
+	echo "    -s layout     set keyboard layout" >&2
+	echo "    --switch      switch layout from cz to use and vice versa" >&2
+	exit 1
+}
+
+notify() {
+	icon="preferences-system-brightness-lock"
+
+	notify-send --urgency=low -t 6000 -a "changeKeyboard" -i ${icon} "${1}"
+}
+
+set_keyboard_layout(){
+	swaymsg input "*" xkb_layout "${1}"
+}
+
+get_keyboard_layout(){
+	swaymsg -t get_inputs | grep xkb_active_layout_name | uniq | awk -F\" '{print $4}'
+}
+
+switch_keyboard_layout(){
+	get_keyboard_layout | grep -q "Czech"
+	if [ $? -eq 0 ]
+	then
+		layout=us
+	else
+		layout=cz\(qwerty\)
+	fi
+	set_keyboard_layout "${layout}"
+}
+
+TEMP=$(getopt -o hgs: --long help,switch -- "$@")
+if [ $? != 0 ] ; then
+	echo "Terminating..." >&2
+	exit 1
+fi
+eval set -- "$TEMP"
+
+while true; do
+	case "$1" in
+		-h | --help )
+			usage ;;
+		-g )
+			get_keyboard_layout
+			exit 0
+			;;
+		-s )
+			set_keyboard_layout "$2"
+# 			notify "$(get_keyboard_layout)"
+			get_keyboard_layout
+			exit 0
+			;;
+		--switch )
+			switch_keyboard_layout
+# 			notify "$(get_keyboard_layout)"
+			get_keyboard_layout
+			exit 0
+			;;
+		-- ) shift; break ;;
+		* ) usage ;;
+	esac
+done
+
