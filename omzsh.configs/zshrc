@@ -1,8 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-setopt HIST_IGNORE_ALL_DUPS
-
 # Path to your oh-my-zsh installation.
   export ZSH=~/.oh-my-zsh
   export SCONSFLAGS="-Q -u -j$(nproc)"
@@ -245,6 +243,13 @@ check_certs_end() {
     return 1
 }
 
+# Hook to ignore all HISTORY_IGNORE commands
+zshaddhistory()
+{
+  emulate -L zsh
+  [[ $1 != ${~HISTORY_IGNORE} ]]
+}
+
 # avoid duplicate enrtries in hostory
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_DUPS
@@ -252,6 +257,7 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
+HISTORY_IGNORE='(git reset*|rm *|cp *|ls *|vim *|reboot|shutdown|exit|cd ..|cd ~|..|~)'
 
 # fzf sourcing
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
