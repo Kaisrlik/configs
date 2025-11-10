@@ -257,7 +257,7 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
-HISTORY_IGNORE='(git reset*|rm *|cp *|ls *|vim *|reboot|shutdown|exit|cd ..|cd ~|..|~)'
+HISTORY_IGNORE='(git reset*|rm *|reboot|shutdown|exit|cd ..|cd ~|..|~)'
 
 # fzf sourcing
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
