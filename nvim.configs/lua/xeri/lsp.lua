@@ -1,4 +1,11 @@
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local caps = vim.tbl_deep_extend(
+	'force',
+	vim.lsp.protocol.make_client_capabilities(),
+	require('cmp_nvim_lsp').default_capabilities(),
+	-- File watching is disabled by default for neovim.
+	{ workspace = { didChangeWatchedFiles = { dynamicRegistration = true } } }
+);
 
 -- Enable virtual text
 vim.diagnostic.config({ virtual_text = true })
@@ -61,33 +68,24 @@ local on_attach = function(client, bufnr)
 end
 
 -- c/c++ LSP server
-local lspconfig = require('lspconfig')
-lspconfig.ccls.setup {
+vim.lsp.config ('ccls', {
+	capabilities = caps,
 	cmd = { "ccls" };
 	filetypes = { "c", "cpp" };
-	capabilities = capabilities,
 	on_attach = on_attach,
-	root_dir = lspconfig.util.root_pattern("compile_commands.json", ".git", ".ccls");
+	-- root_dir = require('lspconfig').util.root_pattern("compile_commands.json", ".git", ".ccls");
 	init_options = {
 		highlight = {
 			lsRanges = true;
 		}
 	};
-}
+})
+vim.lsp.enable('ccls')
 
-local caps = vim.tbl_deep_extend(
-	'force',
-	vim.lsp.protocol.make_client_capabilities(),
-	require('cmp_nvim_lsp').default_capabilities(),
-	-- File watching is disabled by default for neovim.
-	{ workspace = { didChangeWatchedFiles = { dynamicRegistration = true } } }
-);
-
-local lsp_path = vim.env.NIL_PATH or 'nil'
-lspconfig.nil_ls.setup {
-	autostart = true,
+vim.lsp.config ('nil_ls', {
 	capabilities = caps,
-	cmd = { lsp_path },
+	cmd = { "nil" },
+	filetypes = { "nix" };
 	settings = {
 		['nil'] = {
 			testSetting = 42,
@@ -96,12 +94,14 @@ lspconfig.nil_ls.setup {
 			},
 		},
 	},
-}
+})
+vim.lsp.enable('nil_ls')
 
-lspconfig.rust_analyzer.setup {
-	capabilities = capabilities,
-	on_attach = on_attach,
-}
+-- vim.lsp.config ('rust_analyzer', {
+-- 	capabilities = caps,
+-- 	on_attach = on_attach,
+-- })
+-- vim.lsp.enable('rust_analyzer')
 
 -- -- Configure LSP through rust-tools.nvim plugin.
 -- -- rust-tools will configure and enable certain LSP features for us.
@@ -147,7 +147,7 @@ for word in io.open(path, "r"):lines() do
 	table.insert(words, word)
 end
 
-lspconfig.ltex.setup {
+vim.lsp.config ('ltex', {
 	on_attach = on_attach,
 	filetypes = { "markdown", "text", "tex", "mail" },
 	cmd = { "ltex-ls" },
@@ -162,7 +162,8 @@ lspconfig.ltex.setup {
 			},
 		},
 	},
-}
+})
+vim.lsp.enable('ltex')
 
 -- organize imports
 -- https://github.com/neovim/nvim-lspconfig/issues/115#issuecomment-902680058
@@ -184,7 +185,7 @@ end
 -- Set up null-ls
 local null_ls = require("null-ls")
 null_ls.setup({
-	capabilities = capabilities,
+	capabilities = caps,
 	debug = true,
 	sources = {
 		-- null_ls.builtins.formatting.clang_format,

@@ -1,4 +1,4 @@
 ## How to update
 
-    :PackerUpdate
+    :Lazy update
     :TSUpdate
