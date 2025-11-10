@@ -45,7 +45,7 @@ hi CursorLineNr ctermbg=236 cterm=bold gui=bold guibg=#25252e
 hi Comment ctermfg=247 gui=italic guifg=#585b70
 hi Constant ctermfg=216 guifg=#fab387
 hi Special term=bold ctermfg=2 guifg=SeaGreen
-hi Identifier cterm=none ctermfg=29 guifg=DarkCyan
+hi! link Identifier Normal
 hi Statement ctermfg=3 gui=none guifg=#cbcb41
 hi Keyword ctermfg=3 gui=none guifg=#cbcb41
 
