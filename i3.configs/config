@@ -200,7 +200,7 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 #input
 input * xkb_layout "us"
 
-# # Make Caps Lock an additional Esc
-# input type:keyboard {
-# 	xkb_options caps:escape
-# }
+# Make Caps Lock an additional Esc
+input type:keyboard {
+	xkb_options caps:escape
+}

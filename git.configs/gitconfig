@@ -48,6 +48,7 @@
 		}; f"
 
 	unstage = reset HEAD --
+	master = !git checkout -b master && git branch --set-upstream-to=origin/main
 	merged = branch --merged
 	# blame, ignore movement, commits creating file, any commits
 	blamedeep = blame -w -C -C -C
