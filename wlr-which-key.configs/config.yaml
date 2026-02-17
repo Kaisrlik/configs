@@ -1,0 +1,64 @@
+# wlr-which-key config
+font: monospace 12
+background: "#424242ff"
+color: "#d2d2d2"
+border: "#cdcd00"
+separator: "    "
+border_width: 3
+corner_r: 3
+padding: 15 # Defaults to corner_r
+rows_per_column: 5 # No limit by default
+column_padding: 25 # Defaults to padding
+
+# Anchor and margin
+anchor: center # One of center, left, right, top, bottom, bottom-left, top-left, etc.
+# Only relevant when anchor is not center
+margin_right: 0
+margin_bottom: 0
+margin_left: 0
+margin_top: 0
+
+# Permits key bindings that conflict with compositor key bindings.
+# Default is `false`.
+inhibit_compositor_keyboard_shortcuts: false
+
+# Try to guess the correct keyboard layout to use. Default is `false`.
+auto_kbd_layout: false
+
+menu:
+  - key: "d"
+    desc: dmenu
+    cmd: bemenu-run --no-exec --fn "Ubuntu 16" -p ">>" --tf "#18b218" --hf "#3daee9" --sf "#3daee9" --scf "#3daee9" | xargs swaymsg exec --
+  - key: "f"
+    desc: Firefox
+    cmd: firefox
+  - key: "p"
+    desc: Power
+    submenu:
+      - key: "s"
+        desc: Sleep
+        cmd: systemctl suspend
+      - key: "r"
+        desc: Reboot
+        cmd: reboot
+      - key: "o"
+        desc: Off
+        cmd: poweroff
+  - key: "l"
+    desc: Laptop Screen
+    submenu:
+      - key: "a"
+        desc: arandr
+        cmd: arandr
+      - key: "t"
+        desc: Toggle On/Off
+        cmd: toggle-laptop-display.sh
+      - key: "s"
+        desc: Scale
+        submenu:
+          - key: "1"
+            desc: Set Scale to 1.0
+            cmd: wlr-randr --output eDP-1 --scale 1
+          - key: "2"
+            desc: Set Scale to 1.1
+            cmd: wlr-randr --output eDP-1 --scale 1.1
