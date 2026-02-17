@@ -12,6 +12,7 @@ require('nvim-treesitter.configs').setup{
 		"make",
 		"markdown",
 		"meson",
+		"typst",
 		"vim",
 		"yaml",
 	},
