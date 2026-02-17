@@ -25,7 +25,7 @@ bindsym $mod+Shift+q kill
 # focus_follows_mouse no
 
 # start a program launcher
-bindsym $mod+d exec bemenu-run --no-exec --fn "Ubuntu 16" -p ">>" --tf "#18b218" --hf "#3daee9" --sf "#3daee9" --scf "#3daee9" | xargs swaymsg exec --
+bindsym $mod+d exec wlr-which-key
 
 # lockscreen
 bindsym $mod+shift+x exec swaylock --color "#000000"
