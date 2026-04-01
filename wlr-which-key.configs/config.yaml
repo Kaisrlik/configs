@@ -30,8 +30,11 @@ menu:
     desc: dmenu
     cmd: bemenu-run --no-exec --fn "Ubuntu 16" -p ">>" --tf "#18b218" --hf "#3daee9" --sf "#3daee9" --scf "#3daee9" | xargs swaymsg exec --
   - key: "f"
-    desc: Firefox
+    desc: firefox
     cmd: firefox
+  - key: "s"
+    desc: steam
+    cmd: steam
   - key: "p"
     desc: Power
     submenu:
