@@ -4,11 +4,13 @@
 .ccls-root
 .*sw?
 .vimrc
+.gdbinit
 # commonly used build directories
 _build/
 _b/
 build/
 # nix
+.envrc
 .direnv
 result
 result-*
