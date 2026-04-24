@@ -9,6 +9,7 @@ local caps = vim.tbl_deep_extend(
 
 -- Enable virtual text
 vim.diagnostic.config({ virtual_text = true })
+vim.lsp.log.set_level("off")
 
 local on_attach = function(client, bufnr)
 
