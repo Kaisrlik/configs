@@ -4,12 +4,12 @@ local ok, catppuccin = pcall(require, "catppuccin")
 if not ok then return end
 
 catppuccin.setup {}
--- vim.cmd[[colorscheme catppuccin]]
--- lualine
+-- lualine (status line)
 require('lualine').setup{
 	options = {
-		theme = 'catppuccin'
+		theme = 'catppuccin-nvim'
 	}
 }
+
 -- use catppuchin as a base and overwrite it with my colorscheme
 vim.cmd[[colorscheme dark]]
