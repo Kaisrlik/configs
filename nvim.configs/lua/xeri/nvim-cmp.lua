@@ -1,6 +1,7 @@
 -- completition plugin setup
 local cmp = require('cmp')
 local cmp_ultisnips_mappings = require('cmp_nvim_ultisnips.mappings')
+
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -17,11 +18,12 @@ cmp.setup({
 				i = cmp.mapping.abort(),
 				c = cmp.mapping.close(),
 			}),
-		-- Accept currently selected item. If none selected, `select` first item.
-		-- Set `select` to `false` to only confirm explicitly selected items.
-		['<CR>'] = cmp.mapping.confirm({ select = true }),
-		['<C-CR>'] = cmp.mapping.confirm({ select = true }),
-		["<Tab>"] = cmp.mapping( function(fallback) cmp_ultisnips_mappings.expand_or_jump_forwards(fallback) end, { "i", "s"}),
+		["<Tab>"] = cmp.mapping(
+			function(fallback)
+				-- Following function corectly expads on hit
+				-- cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
+				cmp_ultisnips_mappings.compose{ "expand", "jump_forwards", }(fallback)
+			end),
 		["<S-Tab>"] = cmp.mapping( function(fallback) cmp_ultisnips_mappings.jump_backwards(fallback) end, { "i", "s"}),
 	},
 	-- add sources for autocompletition

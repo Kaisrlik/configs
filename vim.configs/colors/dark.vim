@@ -37,6 +37,8 @@ hi FoldColumn term=standout ctermfg=4 ctermbg=7 guifg=DarkBlue guibg=Gray80
 " Pmenu
 hi Pmenu term=bold ctermfg=246 ctermbg=236
 hi PmenuSel term=bold ctermfg=250 ctermbg=0
+hi NormalFloat term=bold ctermfg=250 ctermbg=234
+hi FloatBoarder term=bold ctermfg=250 ctermbg=236
 
 hi CursorLine ctermbg=236 guibg=#25252e cterm=none
 hi CursorLineNr ctermbg=236 cterm=bold gui=bold guibg=#25252e
