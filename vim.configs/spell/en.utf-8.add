@@ -3,6 +3,7 @@ ACL
 ATT
 Agilex
 Attr
+Bootflow
 CSR
 CTRL
 CXL
@@ -18,6 +19,7 @@ IMC
 IPU
 IPv4
 IPv6
+ISA
 Jfrog
 Kaisrlik
 Kconfig
@@ -25,16 +27,17 @@ Lustre
 MDS
 MEV
 NVMe
-QSFP
 OSS
 OST
+PCP
+QSFP
 RCRB
+RISCV
 Serial-Over-Lan
 Simics
 Stratix
 TODO
 UPI
-PCP
 VulcanCity
 XXX
 Xeon
@@ -56,6 +59,7 @@ fscrypt
 gdb
 hw
 iAFU
+inband
 initd
 initramfs
 inode
@@ -71,5 +75,7 @@ sw
 systemd
 tftp
 tftpboot
+toolchain
+uC
 vmlinuz
 zfs
