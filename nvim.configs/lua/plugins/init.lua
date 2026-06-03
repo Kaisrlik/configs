@@ -15,6 +15,9 @@ return {
 	'hrsh7th/cmp-path',
 	'neovim/nvim-lspconfig',
 
+	-- Copilot
+	'github/copilot.vim',
+
 	{'nvimtools/none-ls.nvim', dependencies = {"gbprod/none-ls-shellcheck.nvim"} },
 
 	--Buffer navigation
