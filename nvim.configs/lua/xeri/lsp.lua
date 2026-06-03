@@ -150,7 +150,7 @@ end
 
 vim.lsp.config ('ltex', {
 	on_attach = on_attach,
-	filetypes = { "markdown", "text", "tex", "mail" },
+	filetypes = { "markdown", "text", "tex", "typst", "mail" },
 	cmd = { "ltex-ls" },
 	flags = { debounce_text_changes = 300 },
 	settings = {
@@ -165,6 +165,21 @@ vim.lsp.config ('ltex', {
 	},
 })
 vim.lsp.enable('ltex')
+
+-- Typst lsp
+vim.lsp.config ("tinymist", {
+	on_attach = on_attach,
+	filetypes = { "typst" },
+	capabilities = caps,
+	cmd = { "tinymist" },
+--	-- Direct assiment does work, but one bellow does not
+--	root_dir = function(_, bufnr)
+--		local root_dir = vim.fs.root(0, ".git") or vim.fn.expand("%:p:h")
+--		vim.notify("tinymist: root_dir: " .. root_dir)
+--		return root_dir
+--	end,
+})
+vim.lsp.enable('tinymist')
 
 -- organize imports
 -- https://github.com/neovim/nvim-lspconfig/issues/115#issuecomment-902680058

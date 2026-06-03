@@ -22,7 +22,7 @@ cmp.setup({
 			function(fallback)
 				-- Following function corectly expads on hit
 				-- cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
-				cmp_ultisnips_mappings.compose{ "expand", "jump_forwards", }(fallback)
+				cmp_ultisnips_mappings.compose{ "expand", "jump_forwards" }(fallback)
 			end),
 		["<S-Tab>"] = cmp.mapping( function(fallback) cmp_ultisnips_mappings.jump_backwards(fallback) end, { "i", "s"}),
 	},
