@@ -15,8 +15,19 @@ return {
 	'hrsh7th/cmp-path',
 	'neovim/nvim-lspconfig',
 
-	-- Copilot
-	'github/copilot.vim',
+	-- Coding assistent
+	{
+		"olimorris/codecompanion.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		opts = {
+			opts = {
+				log_level = "DEBUG", -- or "TRACE"
+			},
+		},
+	},
 
 	{'nvimtools/none-ls.nvim', dependencies = {"gbprod/none-ls-shellcheck.nvim"} },
 
