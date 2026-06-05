@@ -6,7 +6,7 @@ opts:
   alias: in
   adapter:
     name: copilot
-    model: gpt4.5
+    model: gpt-4.1
 ---
 
 ## user

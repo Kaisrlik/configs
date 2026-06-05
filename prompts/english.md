@@ -6,7 +6,6 @@ opts:
   alias: eng
   auto_submit: true
   placement: replace
-  stop_context_insertion: true
   modes:
     - v
 ---

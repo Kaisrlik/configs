@@ -8,7 +8,6 @@ opts:
   modes:
     - v
   placement: new
-  stop_context_insertion: true
 ---
 
 ## system
