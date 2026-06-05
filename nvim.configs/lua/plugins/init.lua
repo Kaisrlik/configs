@@ -20,7 +20,7 @@ return {
 		"olimorris/codecompanion.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
+			"nvim-treesitter/nvim-treesitter", branch = 'main',
 		},
 		opts = {
 			opts = {
@@ -69,13 +69,12 @@ return {
 
 	-- If you want to enable filetype detection based on treesitter:
 	({
-		'nvim-treesitter/nvim-treesitter',
+		'nvim-treesitter/nvim-treesitter', branch = 'main',
 		build = function()
 			local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
 			ts_update()
 		end,
 	}),
-	'nvim-treesitter/playground',
 
 	-- presentation in vim
 	'Kaisrlik/present.nvim',
