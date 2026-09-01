@@ -2,6 +2,7 @@ PACKAGES = git.configs \
 	i3.configs \
 	nvim.configs \
 	omzsh.configs \
+	pi.configs \
 	systemd.configs \
 	vim.configs \
 	foot.configs

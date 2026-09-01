@@ -1,0 +1,8 @@
+{
+  "lastChangelogVersion": "0.84.2",
+  "theme": "dark",
+  "defaultProvider": "gnai",
+  "defaultModel": "claude-4-5-sonnet",
+  "defaultThinkingLevel": "medium",
+  "enableInstallTelemetry": false
+}
