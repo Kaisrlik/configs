@@ -243,12 +243,17 @@ check_certs_end() {
     return 1
 }
 
-# Hook to ignore all HISTORY_IGNORE commands
-zshaddhistory()
-{
-  emulate -L zsh
-  [[ $1 != ${~HISTORY_IGNORE} ]]
+resize() {
+    # imagemagick
+    convert -resize 20% $1 $1
 }
+
+# Hook to ignore all HISTORY_IGNORE commands
+# Zshaddhistory()
+# {
+#   emulate -L zsh
+#   [[ $1 != ${~HISTORY_IGNORE} ]]
+# }
 
 # avoid duplicate enrtries in hostory
 setopt HIST_EXPIRE_DUPS_FIRST
