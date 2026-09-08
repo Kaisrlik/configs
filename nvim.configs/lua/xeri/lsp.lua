@@ -150,7 +150,7 @@ end
 
 vim.lsp.config ('ltex', {
 	on_attach = on_attach,
-	filetypes = { "markdown", "text", "tex", "typst", "rst", "mail" },
+	filetypes = { "markdown", "text", "tex", "rst", "mail" },
 	cmd = { "ltex-ls" },
 	flags = { debounce_text_changes = 300 },
 	settings = {

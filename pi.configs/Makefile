@@ -1,7 +1,7 @@
 CURDIR = $(shell pwd)
 
 install:
-	ln -sf $(CURDIR)/.. ~/.pi
+	ln -sf $(CURDIR) ~/.pi
 
 packages:
 	true

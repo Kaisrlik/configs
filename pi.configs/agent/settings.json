@@ -4,5 +4,8 @@
   "defaultProvider": "gnai",
   "defaultModel": "claude-4-5-sonnet",
   "defaultThinkingLevel": "medium",
-  "enableInstallTelemetry": false
+  "enableInstallTelemetry": false,
+  "packages": [
+    "npm:pi-mcp-adapter"
+  ]
 }
