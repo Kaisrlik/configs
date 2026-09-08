@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "mcpi": {
+      "disabled": true,
+      "command": "/home/jkaisrli/devel/configs/pi.configs/agent/mcp-srv/mcpi"
+    }
+  }
+}
