@@ -2,6 +2,11 @@
 local cmp = require('cmp')
 local cmp_ultisnips_mappings = require('cmp_nvim_ultisnips.mappings')
 
+vim.g.UltiSnipsSnippetDirectories = {
+	vim.fn.expand('~/.vim/UltiSnips'),
+	'UltiSnips'
+}
+
 cmp.setup({
 	snippet = {
 		expand = function(args)
