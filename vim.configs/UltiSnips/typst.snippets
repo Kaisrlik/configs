@@ -1,0 +1,36 @@
+snippet slide "create slide"
+#slide[
+  ${0}
+]
+endsnippet
+
+snippet fig "create figure"
+#figure(
+  image("${1}", width: 100%),
+  caption: [${0}]
+)
+endsnippet
+
+snippet link "create link"
+#link("${0}")[${1}]
+endsnippet
+snippet columns "create 2 columns grid"
+#grid(
+  columns: (1fr, 1fr),
+  gutter: 1em,
+  [
+    ${0}
+  ], [
+  ]
+)
+endsnippet
+snippet rows "create 2 rows grid"
+#grid(
+  rows: (1fr, 1fr),
+  gutter: 1em,
+  [
+    ${0}
+  ], [
+  ]
+)
+endsnippet
