@@ -5,6 +5,7 @@ PACKAGES = git.configs \
 	pi.configs \
 	systemd.configs \
 	vim.configs \
+	wlr-which-key.configs/ \
 	foot.configs
 
 .PHONY: $(PACKAGES)
