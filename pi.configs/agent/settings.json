@@ -1,15 +1,11 @@
 {
-  "lastChangelogVersion": "0.85.1",
+  "lastChangelogVersion": "1.0.0",
   "theme": "dark",
   "defaultProvider": "gnai",
   "defaultModel": "claude-4-5-sonnet",
   "defaultThinkingLevel": "medium",
   "enableInstallTelemetry": false,
-  "packages": [
-    "npm:pi-mcp-adapter"
-  ],
   "packages.subagent": [
-    "npm:pi-subagents",
-    "npm:pi-mcp-adapter"
+    "npm:pi-subagents"
   ]
 }
