@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-DIR="${HOME}/screenshots/"
+DATE="$(date +%Y)"
+DIR="${HOME}/screenshots/${DATE}"
 
 xshot() {
 	mkdir -p "${DIR}"
-	slurp | grim -g - "${DIR}xshot_$(date +%F_%H%M%S_%N).png"
+	slurp | grim -g - "${DIR}/xshot_$(date +%F_%H%M%S_%N).png"
 }
 
 xshot
